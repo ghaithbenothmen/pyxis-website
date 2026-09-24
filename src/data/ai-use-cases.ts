@@ -43,12 +43,6 @@ export const aiUseCases: AiUseCase[] = [
     domain: "Customer",
   },
   {
-    id: "traffic",
-    title: "Traffic Management",
-    description: "Understand how traffic moves across the network to manage it intelligently.",
-    domain: "Network",
-  },
-  {
     id: "api",
     title: "API Monetization",
     description: "Expose network intelligence through APIs as a new source of value.",

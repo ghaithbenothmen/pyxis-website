@@ -18,13 +18,13 @@ export function Investigation() {
       aria-labelledby="investigation-title"
       className="group/inv relative"
     >
-      <div data-inv="pin" className="relative overflow-hidden lg:h-svh">
+      <div className="relative overflow-hidden lg:h-svh">
         <div className="container-page relative grid gap-12 py-24 lg:h-full lg:grid-cols-12 lg:items-center lg:gap-8 lg:py-0 lg:pt-16">
           <div className="relative z-10 lg:col-span-4">
             <p className="label flex items-center gap-4 text-muted">
-              <span className="text-accent">06</span>
+              <span className="text-accent">UC/03</span>
               <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
-              <span>Deep investigation</span>
+              <span>In depth · Deep investigation</span>
             </p>
             <h2 id="investigation-title" className="mt-8 text-section">
               Every event
@@ -41,11 +41,11 @@ export function Investigation() {
                 <li
                   key={step.id}
                   data-inv-step={i}
-                  className="relative flex items-center gap-3 py-1.5 pl-5 transition-[opacity,color] duration-500 group-data-[pinned]/inv:opacity-30 group-data-[pinned]/inv:data-[active]:opacity-100 group-data-[pinned]/inv:data-[done]:opacity-70"
+                  className="relative flex items-center gap-3 py-1.5 pl-5 transition-[opacity,color] duration-500 group-data-[playing]/inv:opacity-30 group-data-[playing]/inv:data-[active]:opacity-100 group-data-[playing]/inv:data-[done]:opacity-70"
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute top-1/2 -left-[3.5px] size-1.5 -translate-y-1/2 rounded-full bg-border-strong transition-colors duration-500 group-data-[pinned]/inv:[[data-active]>&]:bg-accent group-data-[pinned]/inv:[[data-done]>&]:bg-accent/60"
+                    className="absolute top-1/2 -left-[3.5px] size-1.5 -translate-y-1/2 rounded-full bg-border-strong transition-colors duration-500 group-data-[playing]/inv:[[data-active]>&]:bg-accent group-data-[playing]/inv:[[data-done]>&]:bg-accent/60"
                   />
                   <span className="label text-subtle">{pad(i + 1)}</span>
                   <span className="text-sm tracking-tight">{step.label}</span>

@@ -218,31 +218,17 @@
   }
 }
 
-/* Client logo wall: columns scroll vertically by one copy's height */
-@keyframes logo-scroll {
-  to {
-    transform: translateY(-50%);
-  }
-}
-.logo-column {
-  animation: logo-scroll 50s linear infinite;
-  will-change: transform;
-}
-.logo-wall:hover .logo-column {
-  animation-play-state: paused;
-}
-
-/* Technology band: scrolls horizontally by one copy's width */
-@keyframes tech-scroll {
+/* Logo band: scrolls horizontally by one copy's width */
+@keyframes marquee-scroll {
   to {
     transform: translateX(-50%);
   }
 }
-.tech-track {
-  animation: tech-scroll 38s linear infinite;
+.marquee-track {
+  animation: marquee-scroll 38s linear infinite;
   will-change: transform;
 }
-.tech-marquee:hover .tech-track {
+.marquee:hover .marquee-track {
   animation-play-state: paused;
 }
 
@@ -268,23 +254,17 @@
     stroke-dasharray: none;
     opacity: 0.35;
   }
-  .logo-column {
-    animation: none;
-  }
-  .logo-column-copy {
-    display: none;
-  }
-  .tech-track {
+  .marquee-track {
     animation: none;
     width: auto;
     justify-content: center;
   }
-  .tech-track > ul:first-child {
+  .marquee-track > ul:first-child {
     flex-wrap: wrap;
     justify-content: center;
     padding-right: 0;
   }
-  .tech-copy {
+  .marquee-copy {
     display: none;
   }
 }

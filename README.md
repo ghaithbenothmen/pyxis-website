@@ -25,7 +25,7 @@ src/
 ├── components/
 │   ├── animation/       Scene, FadeUp, Reveal, Parallax, Magnetic, SignalLine, NetworkField (canvas)
 │   ├── layout/          Navbar, Footer, LenisProvider, PageTransition, ScrollRail
-│   ├── sections/        Hero, About, Proof, Solutions, Orion, AI, Investigation, Technology, Clients, Contact
+│   ├── sections/        Hero, About, Clients, Orion, AI (ORION Intelligence), Technology, Solutions (Use cases), Investigation, Contact
 │   └── ui/              Button, Container, SectionTitle, Counter, Logo, Arrow
 ├── data/                all repeated content (about, metrics, solutions, AI use cases, ORION, investigation, technologies, clients)
 ├── hooks/               useGsap, useLenis, useMediaQuery
@@ -37,14 +37,14 @@ interactive pieces (AI ecosystem, solution panels, navbar) and the canvas networ
 
 ## Content vs. placeholders
 
-- **Real content** — messaging, About (approach, values and offices from the existing Pyxis IT website), ORION, solutions, AI use cases, data sources,
+- **Real content** — messaging, About (positioning, values and offices), ORION, solutions, AI use cases, data sources,
   investigation capabilities, metrics (100 TB/h, 6.9% MAPE, 9+ deployments, 8+ use cases),
   contact details and the technology list from the existing Pyxis IT website.
 - **Final brand assets** — logo (`public/images/brand/`), favicon and app icons (`src/app/favicon.ico`, `icon.png`, `apple-icon.png`).
 - **Temporary** — every other image, listed in `src/lib/assets.ts` and flagged `temporary: true`.
 - **Illustrative** — timestamps, cell IDs and fingerprints in the investigation map are
   visual examples only (`src/data/investigation.ts`).
-- **Clients** — logos in `public/images/references/`, listed in `src/data/clients.ts`. The `color/` and `mono/` variants are generated from the originals (trimmed; white monochrome keeps knocked-out text readable). Higher-resolution or SVG logos will render sharper.
+- **Clients** — originals in `assets/references/`, listed in `src/data/clients.ts`. The `mono/` (grey at rest) and `on-dark/` (colour on hover) variants in `public/images/references/` are generated from them. Higher-resolution or SVG logos will render sharper.
 
 ## Replacing assets
 
@@ -68,8 +68,7 @@ Brand colours and fonts live in `src/app/globals.css` (`:root` tokens) and
 - `<Scene name="…">` is the client boundary for a section; it runs the matching timeline
   from `src/animations` inside a `gsap.context()` that is reverted on unmount.
 - Every scene uses `gsap.matchMedia()` with three variants:
-  - **desktop** (≥1024px): pinned, scroll-scrubbed sequences (ORION, Investigation)
-  - **compact** (<1024px): the same sequences scrubbed without pinning; lighter reveals
+  - **desktop / compact**: ORION, Investigation and Data ecosystem play their sequence once when they enter the viewport (no pinning); lighter reveals on small screens
   - **reduced motion**: no timelines, no Lenis, content fully visible
 
 Elements animated on entry carry `data-intro`. They start hidden only when JavaScript
@@ -85,9 +84,7 @@ trap), descriptive `aria-label`s on diagrams, `prefers-reduced-motion` support.
 ## Contact form
 
 `src/components/sections/Contact/ContactForm.tsx` has no backend yet: submitting
-composes an email to `contact@pyxis.com.tn` in the visitor's mail client. Links with
-`data-contact-topic="…"` (the "Talk to an expert" links on solutions) preselect the topic
-(`src/data/contact.ts`). To use a real endpoint later, replace the `mailto` in `onSubmit`
+composes an email to `contact@pyxisit.net` in the visitor's mail client. To use a real endpoint later, replace the `mailto` in `onSubmit`
 with a POST to an API route or form service.
 
 ## SEO
@@ -100,7 +97,7 @@ with a POST to an API route or form service.
 
 ## Global presence map
 
-The dotted map in About is generated from `assets/map-pyxis.png` (dark red = offices,
+The dotted map in About (Global presence) is generated from `assets/map-pyxis.png` (dark red = offices,
 light pink = project countries, grey = land). After replacing that image, run:
 
 ```bash
@@ -109,3 +106,14 @@ node scripts/generate-footprint.mjs
 
 It rewrites `public/images/map/footprint.svg` (transparent dotted map) and
 `src/data/footprint.ts` (office and country points used for the animated links).
+
+## Pages
+
+- `/` — home: Hero, About, References, ORION + ORION Intelligence, Data ecosystem, Use cases, Contact
+- `/use-cases/[slug]` — one statically generated page per use case in `src/data/solutions.ts`
+  (header, capabilities, data & ORION pipeline, next use case, contact). The Regulatory
+  Compliance & Deep Investigation page carries the investigation sequence.
+
+Navbar, footer and structured data live in `src/app/layout.tsx`, so every page shares them.
+Links to home sections use `/#section`; `LenisProvider` scrolls smoothly on the same page
+and restores the right position after client-side navigation.

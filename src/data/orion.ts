@@ -24,5 +24,5 @@ export const orionStages: OrionStage[] = [
   { title: "Illuminate", caption: "ORION, the central intelligence layer, activates." },
   { title: "Process", caption: "Data is aggregated, cleansed and correlated." },
   { title: "Deliver", caption: "Insights, dashboards, alerts and operational workflows." },
-  { title: "Learn", caption: "Next, machine intelligence turns it into decisions." },
+  { title: "Learn", caption: "ORION Intelligence turns it into decisions." },
 ];

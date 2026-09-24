@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { assets } from "@/lib/assets";
-import { contact } from "@/lib/constants";
+import { contact, telHref } from "@/lib/constants";
 import { NetworkField } from "@/components/animation/NetworkField";
 import { Reveal } from "@/components/animation/Reveal";
 import { FadeUp } from "@/components/animation/FadeUp";
 import { ContactForm } from "./ContactForm";
 
-export function Contact() {
+/** Contact block shared by every page; `index` follows each page's numbering. */
+export function Contact({ index = "06" }: { index?: string }) {
   return (
     <section
       id="contact"
@@ -30,7 +31,7 @@ export function Contact() {
 
       <div className="container-page pt-28 pb-24 md:pt-40 md:pb-32">
         <p className="label flex items-center gap-4 text-muted">
-          <span className="text-accent">09</span>
+          <span className="text-accent">{index}</span>
           <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
           <span>Contact</span>
         </p>
@@ -56,7 +57,9 @@ export function Contact() {
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
               {contact.offices.map((office) => (
                 <address key={office.country} className="not-italic">
-                  <p className="label text-subtle">{office.country}</p>
+                  <p className="label text-subtle">
+                    {office.country} · {office.role}
+                  </p>
                   <p className="mt-3 text-sm leading-relaxed text-muted">
                     {office.lines.map((line) => (
                       <span key={line} className="block">
@@ -64,12 +67,14 @@ export function Contact() {
                       </span>
                     ))}
                   </p>
-                  <a
-                    href={`tel:${office.phone.replace(/s/g, "")}`}
-                    className="mt-2 inline-block text-sm transition-colors hover:text-accent"
-                  >
-                    {office.phone}
-                  </a>
+                  {office.phone ? (
+                    <a
+                      href={telHref(office.phone)}
+                      className="mt-2 inline-block text-sm transition-colors hover:text-accent"
+                    >
+                      {office.phone}
+                    </a>
+                  ) : null}
                 </address>
               ))}
             </div>

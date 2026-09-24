@@ -3,11 +3,10 @@ import { responsiveScene, select, type SceneAnimation } from "./global";
 
 /**
  * Moment 3 — Events → Correlation → Investigation.
- * Desktop: pinned and scrubbed, one workflow step per stage.
- * Tablet/mobile: the same sequence, scrubbed by scroll without pinning.
+ * Plays once, one workflow step per stage, when the map enters the viewport.
  */
 export const investigationAnimation: SceneAnimation = (root) =>
-  responsiveScene(({ desktop, reduced }) => {
+  responsiveScene(({ reduced }) => {
     if (reduced) return;
 
     const part = (name: string) => select<SVGElement | HTMLElement>(root, `[data-inv="${name}"]`);
@@ -53,17 +52,10 @@ export const investigationAnimation: SceneAnimation = (root) =>
       onUpdate() {
         setStep(Math.min(steps.length - 1, Math.floor(this.time())));
       },
-      scrollTrigger: desktop
-        ? {
-            trigger: part("pin")[0],
-            start: "top top",
-            end: "+=340%",
-            pin: true,
-            scrub: 0.8,
-            anticipatePin: 1,
-            onToggle: (self) => root.toggleAttribute("data-pinned", self.isActive || self.progress > 0),
-          }
-        : { trigger: part("map")[0], start: "top 75%", end: "bottom 40%", scrub: 0.6 },
+      scrollTrigger: { trigger: part("map")[0], start: "top 70%", toggleActions: "play none none none" },
+      // While the sequence plays, the stage list follows along; once done, all stages show.
+      onStart: () => root.setAttribute("data-playing", ""),
+      onComplete: () => root.removeAttribute("data-playing"),
     });
 
     const showEvent = (i: number, at: number) => {
@@ -97,6 +89,7 @@ export const investigationAnimation: SceneAnimation = (root) =>
     tl.to(part("evidence"), { opacity: 1, y: 0 }, 6.1);
     tl.to(part("evidence-item"), { opacity: 1, x: 0, stagger: 0.12 }, 6.3);
     tl.to({}, { duration: 0.4 }, 6.8);
+    tl.timeScale(2.2);
 
-    return () => root.removeAttribute("data-pinned");
+    return () => root.removeAttribute("data-playing");
   });

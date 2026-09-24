@@ -1,8 +1,6 @@
 import { Scene } from "@/components/animation/Scene";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { FadeUp } from "@/components/animation/FadeUp";
-import { dataSources, engineeringStack, pipeline } from "@/data/technologies";
-import { TechMarquee } from "./TechMarquee";
+import { dataSources, pipeline } from "@/data/technologies";
 import { pad } from "@/lib/utils";
 import { PipelineDiagram } from "./PipelineDiagram";
 
@@ -17,7 +15,7 @@ export function Technology() {
       <div className="container-page">
         <SectionTitle
           id="technology-title"
-          index="07"
+          index="04"
           label="Data ecosystem"
           lines={["Every source.", "One pipeline."]}
           intro="Network, charging, customer and device data are aggregated, cleansed and correlated before ORION and AI turn them into intelligence."
@@ -66,13 +64,7 @@ export function Technology() {
           </ol>
         </div>
 
-        <FadeUp className="mt-20 border-t border-border pt-8 md:mt-28">
-          <p className="label text-subtle">Technologies we work with</p>
-        </FadeUp>
       </div>
-      <FadeUp className="mt-8 md:mt-10">
-        <TechMarquee items={engineeringStack} />
-      </FadeUp>
     </Scene>
   );
 }

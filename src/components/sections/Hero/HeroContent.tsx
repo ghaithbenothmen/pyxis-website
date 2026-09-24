@@ -15,13 +15,6 @@ export function HeroContent() {
         <span data-hero="meta" data-intro>
           Pyxis IT / Telecom data intelligence
         </span>
-        <span data-hero="meta" data-intro className="flex items-center gap-2">
-          <span className="blink size-1.5 rounded-full bg-primary" />
-          Signal · live
-        </span>
-        <span data-hero="meta" data-intro>
-          36.84° N — 10.19° E
-        </span>
       </div>
 
       <div className="py-16 md:py-20">

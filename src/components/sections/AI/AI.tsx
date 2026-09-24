@@ -10,7 +10,7 @@ export function AI() {
       name="ai"
       id="intelligence"
       aria-labelledby="ai-title"
-      className="relative py-24 md:py-32"
+      className="relative pt-8 pb-24 md:pt-12 md:pb-32"
     >
       <div
         aria-hidden="true"
@@ -19,10 +19,10 @@ export function AI() {
       <div className="container-page relative">
         <SectionTitle
           id="ai-title"
-          index="05"
-          label="Machine intelligence"
+          index="03"
+          label="ORION Intelligence"
           lines={["Intelligence that", "learns the network."]}
-          intro="Machine intelligence applied to correlated telecom data — from network behaviour to every customer interaction."
+          intro="The AI layer of ORION: machine intelligence applied to correlated telecom data — from network behaviour to every customer interaction."
         />
 
         <div className="mt-20 hidden md:mt-24 md:block">

@@ -3,12 +3,11 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { FadeUp } from "@/components/animation/FadeUp";
 import { SignalLine } from "@/components/animation/SignalLine";
 import { pad } from "@/lib/utils";
-import { Expertise } from "./Expertise";
 import { FootprintMap } from "./FootprintMap";
 
 /**
- * Who Pyxis is: positioning, the ORION promise, areas of expertise, values
- * and presence — in the order a corporate "About" reads.
+ * Who Pyxis is: positioning, the ORION promise and how it is built, the
+ * company's values and its global presence.
  */
 export function About() {
   return (
@@ -44,8 +43,6 @@ export function About() {
           </FadeUp>
         </div>
 
-        <Expertise />
-
         {/* Values */}
         <FadeUp
           as="ul"
@@ -74,19 +71,22 @@ export function About() {
             <div>
               <h3 className="label text-subtle">Global presence</h3>
               <p className="mt-4 max-w-xl font-display text-[clamp(1.5rem,2.4vw,2.25rem)] leading-[1.1] tracking-[-0.03em]">
-                Headquartered in Tunis, with an office in the United Kingdom.
+                Headquartered in the United Kingdom, with an office in Tunis.
               </p>
             </div>
             <ul className="label flex flex-col gap-3 text-muted">
               <li className="flex items-center gap-3">
                 <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
-                <span className="text-foreground">Offices</span>
-                {presence.map((place) => place.city).join(" · ")}
+                <span className="text-foreground">Headquarters</span>
+                {presence[0]?.city}
+                <span className="text-foreground">· Office</span>
+                {presence[1]?.city}
               </li>
               <li className="flex items-center gap-3">
                 <span aria-hidden="true" className="size-2 rounded-full bg-primary" />
                 <span className="text-foreground">Project countries</span>
               </li>
+              <li className="text-subtle">Hover a point to see the country</li>
             </ul>
           </FadeUp>
           <div className="mt-10 md:mt-14">

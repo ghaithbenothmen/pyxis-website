@@ -1,14 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { solutions } from "@/data/solutions";
+import { solutions, hrefForUseCase } from "@/data/solutions";
 import { cn } from "@/lib/utils";
 import { Arrow } from "@/components/ui/Arrow";
 
 /**
  * Three horizontal panels. On desktop the active panel expands to reveal its
- * capabilities; on smaller screens every panel is stacked and open.
+ * capabilities; on smaller screens every panel is stacked and open. Titles and
+ * "See more" open each use case's own page.
  */
 export function SolutionPanels() {
   const [active, setActive] = useState(0);
@@ -20,7 +22,7 @@ export function SolutionPanels() {
         return (
           <li
             key={solution.id}
-            id={`solution-${solution.id}`}
+            id={`use-case-${solution.id}`}
             data-solutions="panel"
             onMouseEnter={() => setActive(i)}
             onFocusCapture={() => setActive(i)}
@@ -57,14 +59,9 @@ export function SolutionPanels() {
                     !open && "lg:text-[clamp(1.25rem,1.8vw,1.75rem)]",
                   )}
                 >
-                  <button
-                    type="button"
-                    onClick={() => setActive(i)}
-                    aria-expanded={open}
-                    className="text-left"
-                  >
+                  <Link href={hrefForUseCase(solution)} className="text-left transition-colors hover:text-primary">
                     {solution.title}
-                  </button>
+                  </Link>
                 </h3>
 
                 <div
@@ -98,14 +95,14 @@ export function SolutionPanels() {
                       </div>
                     </div>
 
-                    <a
-                      href="#contact"
-                      data-contact-topic={solution.title}
+                    <Link
+                      href={hrefForUseCase(solution)}
+                      aria-label={`See more about ${solution.title}`}
                       className="group/cta mt-8 inline-flex items-center gap-3 border-b border-border-strong pb-1 text-sm transition-colors hover:border-accent hover:text-accent"
                     >
-                      Talk to an expert
+                      See more
                       <Arrow className="transition-transform duration-500 ease-out-expo group-hover/cta:translate-x-1" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

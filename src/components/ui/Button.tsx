@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 import { Arrow } from "./Arrow";
@@ -27,10 +28,13 @@ export function Button({
   size = "md",
   className,
   children,
+  href = "",
   ...props
 }: ButtonProps) {
+  const Tag = href.startsWith("/") || href.startsWith("#") ? Link : "a";
   return (
-    <a
+    <Tag
+      href={href}
       className={cn(
         "group/button inline-flex items-center justify-between border text-sm font-medium tracking-tight transition-colors duration-500 ease-out-expo",
         sizes[size],
@@ -50,6 +54,6 @@ export function Button({
           className="absolute inset-0 -translate-x-full transition-transform duration-500 ease-out-expo group-hover/button:translate-x-0"
         />
       </span>
-    </a>
+    </Tag>
   );
 }

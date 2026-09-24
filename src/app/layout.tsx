@@ -3,6 +3,9 @@ import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/constants";
 import { LenisProvider } from "@/components/layout/LenisProvider";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { StructuredData } from "@/components/layout/StructuredData";
 import "./globals.css";
 
 const display = Inter_Tight({
@@ -85,7 +88,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <PageTransition />
-        <LenisProvider>{children}</LenisProvider>
+        <div className="page-guides" aria-hidden="true">
+          <span />
+          <span className="hidden md:block" />
+          <span className="hidden md:block" />
+          <span />
+        </div>
+        <StructuredData />
+        <LenisProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </LenisProvider>
       </body>
     </html>
   );

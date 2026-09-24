@@ -35,6 +35,6 @@ export type Presence = {
 };
 
 export const presence: Presence[] = [
-  { city: "Tunis", country: "Tunisia" },
   { city: "Kington", country: "United Kingdom" },
+  { city: "Tunis", country: "Tunisia" },
 ];

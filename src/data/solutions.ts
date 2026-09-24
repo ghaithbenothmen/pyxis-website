@@ -14,14 +14,13 @@ export type Solution = {
 export const solutions: Solution[] = [
   {
     id: "advanced-analytics",
-    code: "SOL/01",
+    code: "UC/01",
     title: "Advanced Analytics",
     description:
       "Correlate network and subscriber data at scale to detect fraud and anomalies, manage traffic and surface actionable insights.",
     capabilities: [
       "Fraud Detection",
       "Anomaly Detection",
-      "Traffic Management",
       "Actionable Insights",
       "API Monetization",
     ],
@@ -30,7 +29,7 @@ export const solutions: Solution[] = [
   },
   {
     id: "customer-experience",
-    code: "SOL/02",
+    code: "UC/02",
     title: "Customer Experience Management",
     description:
       "Build a hyper-personalised view of every customer to anticipate churn and deliver the next best offer.",
@@ -44,7 +43,7 @@ export const solutions: Solution[] = [
   },
   {
     id: "compliance-investigation",
-    code: "SOL/03",
+    code: "UC/03",
     title: "Regulatory Compliance & Deep Investigation",
     description:
       "Correlate network events down to the microsecond and assemble evidence for lawful, compliant investigations.",
@@ -58,3 +57,11 @@ export const solutions: Solution[] = [
     image: assets.solutions.compliance,
   },
 ];
+
+export const hrefForUseCase = (solution: Solution) => `/use-cases/${solution.id}`;
+
+export const getSolution = (id: string) => solutions.find((solution) => solution.id === id);
+
+/** The following use case, looping back to the first. */
+export const nextSolution = (solution: Solution) =>
+  solutions[(solutions.indexOf(solution) + 1) % solutions.length];

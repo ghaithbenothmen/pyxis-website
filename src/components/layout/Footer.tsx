@@ -1,4 +1,5 @@
-import { contact, footerColumns, site } from "@/lib/constants";
+import Link from "next/link";
+import { contact, footerColumns, site, telHref } from "@/lib/constants";
 import { Logo } from "@/components/ui/Logo";
 import { Arrow } from "@/components/ui/Arrow";
 
@@ -9,9 +10,9 @@ export function Footer() {
     <footer className="relative border-t border-border bg-background">
       <div className="container-page grid gap-12 py-16 sm:grid-cols-2 md:py-20 lg:grid-cols-12 lg:gap-8">
         <div className="sm:col-span-2 lg:col-span-4">
-          <a href="#top" aria-label="Pyxis IT — back to top">
+          <Link href="#top" aria-label="Pyxis IT — back to top">
             <Logo className="h-12" />
-          </a>
+          </Link>
           <p className="mt-6 max-w-xs text-sm text-muted">{site.tagline}</p>
         </div>
 
@@ -21,9 +22,9 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               {column.links.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-muted transition-colors hover:text-foreground">
+                  <Link href={link.href} className="text-muted transition-colors hover:text-foreground">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -40,10 +41,16 @@ export function Footer() {
             </li>
             {contact.offices.map((office) => (
               <li key={office.country} className="text-muted">
-                <span className="block text-foreground">{office.country}</span>
-                <a href={`tel:${office.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-foreground">
-                  {office.phone}
-                </a>
+                <span className="block text-foreground">
+                  {office.country} · {office.role}
+                </span>
+                {office.phone ? (
+                  <a href={telHref(office.phone)} className="transition-colors hover:text-foreground">
+                    {office.phone}
+                  </a>
+                ) : (
+                  office.lines[0]
+                )}
               </li>
             ))}
           </ul>
@@ -54,10 +61,10 @@ export function Footer() {
         <span>
           © {year} {site.name}. All rights reserved.
         </span>
-        <a href="#top" className="group inline-flex items-center gap-2 transition-colors hover:text-foreground">
+        <Link href="#top" className="group inline-flex items-center gap-2 transition-colors hover:text-foreground">
           Back to top
           <Arrow className="-rotate-90 transition-transform duration-500 ease-out-expo group-hover:-translate-y-0.5" />
-        </a>
+        </Link>
       </div>
     </footer>
   );

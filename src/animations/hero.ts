@@ -4,7 +4,7 @@ import { responsiveScene, select, type SceneAnimation } from "./global";
 /**
  * Moment 1 — typography over network atmosphere.
  * Intro: background → metadata → eyebrow → title lines → lead → CTAs → network.
- * Scroll: content lifts away, background drifts, the network expands into Proof.
+ * Scroll: content lifts away, background drifts, the network expands into About.
  */
 export const heroAnimation: SceneAnimation = (root) =>
   responsiveScene(({ desktop, reduced }) => {

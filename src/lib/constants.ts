@@ -4,20 +4,19 @@ export const site = {
   tagline: "Where telecom data becomes intelligence.",
   description:
     "Pyxis IT is a telecom technology company specializing in Telecom Data Intelligence. Its flagship platform, ORION, transforms complex network data into actionable intelligence for telecom operators — network analytics, customer experience, fraud detection, regulatory compliance, AI and revenue intelligence.",
-  url: "https://www.pyxis.com.tn",
+  url: "https://www.pyxisit.net",
 } as const;
 
 export type NavItem = {
   label: string;
-  href: `#${string}`;
+  /** `/#section` for home-page sections, `#contact` for the form on every page, or a route. */
+  href: string;
 };
 
 export const navigation: NavItem[] = [
-  { label: "About", href: "#about" },
-  { label: "Solutions", href: "#solutions" },
-  { label: "ORION", href: "#orion" },
-  { label: "Intelligence", href: "#intelligence" },
-  { label: "Investigation", href: "#investigation" },
+  { label: "About", href: "/#about" },
+  { label: "ORION", href: "/#orion" },
+  { label: "Use cases", href: "/#use-cases" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -30,27 +29,26 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "Company",
     links: [
-      { label: "About Pyxis", href: "#about" },
-      { label: "Key figures", href: "#proof" },
-      { label: "References", href: "#references" },
+      { label: "About Pyxis", href: "/#about" },
+      { label: "References", href: "/#references" },
       { label: "Contact", href: "#contact" },
     ],
   },
   {
-    title: "Solutions",
+    title: "Use cases",
     links: [
-      { label: "Advanced Analytics", href: "#solution-advanced-analytics" },
-      { label: "Customer Experience", href: "#solution-customer-experience" },
-      { label: "Compliance & Investigation", href: "#solution-compliance-investigation" },
+      { label: "Advanced Analytics", href: "/use-cases/advanced-analytics" },
+      { label: "Customer Experience", href: "/use-cases/customer-experience" },
+      { label: "Compliance & Investigation", href: "/use-cases/compliance-investigation" },
     ],
   },
   {
     title: "Platform",
     links: [
-      { label: "ORION", href: "#orion" },
-      { label: "Machine intelligence", href: "#intelligence" },
-      { label: "Deep investigation", href: "#investigation" },
-      { label: "Data ecosystem", href: "#technology" },
+      { label: "ORION", href: "/#orion" },
+      { label: "ORION Intelligence", href: "/#intelligence" },
+      { label: "Data ecosystem", href: "/#technology" },
+      { label: "Deep investigation", href: "/use-cases/compliance-investigation#investigation" },
     ],
   },
 ];
@@ -59,38 +57,40 @@ export const footerColumns: FooterColumn[] = [
 export const chapters = [
   { id: "top", label: "Intro" },
   { id: "about", label: "About" },
-  { id: "proof", label: "Key figures" },
-  { id: "solutions", label: "Solutions" },
-  { id: "orion", label: "ORION" },
-  { id: "intelligence", label: "Intelligence" },
-  { id: "investigation", label: "Investigation" },
-  { id: "technology", label: "Ecosystem" },
   { id: "references", label: "References" },
+  { id: "orion", label: "ORION" },
+  { id: "technology", label: "Ecosystem" },
+  { id: "use-cases", label: "Use cases" },
   { id: "contact", label: "Contact" },
 ] as const;
 
 export type Office = {
   country: string;
+  role: "Headquarters" | "Office";
   lines: string[];
-  phone: string;
+  phone?: string;
 };
 
-/** Contact details as published on the existing Pyxis IT website. */
-export const contact = {
-  email: "contact@pyxis.com.tn",
+/** Headquarters in the United Kingdom; an office in Tunis. */
+export const contact: { email: string; offices: Office[] } = {
+  email: "contact@pyxisit.net",
   offices: [
     {
-      country: "Tunisia",
-      lines: ["Immeuble Etoile du Nord", "Centre Urbain Nord, Tunis"],
-      phone: "+216 31 108 033",
-    },
-    {
       country: "United Kingdom",
+      role: "Headquarters",
       lines: ["Bridge Street, Kington", "Herefordshire HR5 3DJ"],
       phone: "+44 744 144 3050",
     },
-  ] satisfies Office[],
-} as const;
+    {
+      country: "Tunisia",
+      role: "Office",
+      lines: ["Tunis, Tunisia"],
+    },
+  ],
+};
+
+/** Strips spaces for tel: links. */
+export const telHref = (phone: string) => `tel:${phone.replace(/\s/g, "")}`;
 
 /** Shared motion timing, in seconds. Keeps GSAP and CSS rhythm consistent. */
 export const motion = {

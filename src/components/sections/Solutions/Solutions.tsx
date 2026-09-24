@@ -6,17 +6,17 @@ export function Solutions() {
   return (
     <Scene
       name="solutions"
-      id="solutions"
+      id="use-cases"
       aria-labelledby="solutions-title"
       className="relative py-24 md:py-32"
     >
       <div className="container-page">
         <SectionTitle
           id="solutions-title"
-          index="03"
-          label="Solutions"
-          lines={["From intelligence", "to outcomes."]}
-          intro="Three business outcomes built on the same correlated data and the same intelligence layer."
+          index="05"
+          label="Use cases"
+          lines={["Three use cases.", "One platform."]}
+          intro="How operators put ORION to work — each built on the same correlated data and on ORION Intelligence."
         />
         <div data-solutions="stage" className="mt-16 md:mt-24">
           <SolutionPanels />

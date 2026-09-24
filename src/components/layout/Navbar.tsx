@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { contact, navigation } from "@/lib/constants";
 import { useLenis } from "@/hooks/useLenis";
@@ -13,8 +15,11 @@ const primaryLinks = navigation.filter((item) => item.href !== "#contact");
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
+  // Active section, remembered per page so it resets on navigation
+  const [section, setSection] = useState<{ path: string; href: string } | null>(null);
   const lenis = useLenis();
+  const pathname = usePathname();
+  const active = section?.path === pathname ? section.href : null;
 
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -28,22 +33,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Highlight the section currently in view
+  // Highlight the section currently in view (re-bound on every page)
   useEffect(() => {
     const targets = navigation
-      .map((item) => document.querySelector<HTMLElement>(item.href))
+      .map((item) => item.href.replace(/^\//, ""))
+      .filter((hash) => hash.startsWith("#"))
+      .map((hash) => document.querySelector<HTMLElement>(hash))
       .filter((el): el is HTMLElement => Boolean(el));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+          if (entry.isIntersecting) setSection({ path: pathname, href: `/#${entry.target.id}` });
         });
       },
       { rootMargin: "-45% 0px -50% 0px" },
     );
     targets.forEach((t) => observer.observe(t));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   // Fullscreen menu timeline, built once
   useGSAP(
@@ -139,15 +146,15 @@ export function Navbar() {
             scrolled ? "h-16" : "h-20 md:h-24",
           )}
         >
-          <a href="#top" aria-label="Pyxis IT — home" onClick={() => setOpen(false)}>
+          <Link href="/#top" aria-label="Pyxis IT — home" onClick={() => setOpen(false)}>
             <Logo eager />
-          </a>
+          </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 md:flex lg:gap-10">
             <ul className="flex items-center gap-6 lg:gap-9">
               {primaryLinks.map((item) => (
                 <li key={item.href}>
-                  <a
+                  <Link
                     href={item.href}
                     aria-current={active === item.href ? "true" : undefined}
                     className="group relative py-2 text-sm text-muted transition-colors duration-300 hover:text-foreground aria-[current]:text-foreground"
@@ -157,7 +164,7 @@ export function Navbar() {
                       aria-hidden="true"
                       className="absolute inset-x-0 bottom-0 h-px origin-right scale-x-0 bg-primary transition-transform duration-500 ease-out-expo group-hover:origin-left group-hover:scale-x-100 group-aria-[current]:scale-x-100"
                     />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -207,7 +214,7 @@ export function Navbar() {
           <ol className="space-y-1">
             {navigation.map((item, i) => (
               <li key={item.href} className="overflow-hidden">
-                <a
+                <Link
                   href={item.href}
                   data-menu-item
                   onClick={() => setOpen(false)}
@@ -215,7 +222,7 @@ export function Navbar() {
                 >
                   <span className="label text-accent">{pad(i + 1)}</span>
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ol>

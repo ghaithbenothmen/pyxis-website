@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useId, useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 import { contact } from "@/lib/constants";
-import { contactTopics } from "@/data/contact";
 import { Arrow } from "@/components/ui/Arrow";
 import { cn } from "@/lib/utils";
 
@@ -11,29 +10,17 @@ const field =
 
 /**
  * Enquiry form. There is no backend yet, so submitting composes an email to
- * Pyxis in the visitor's mail client. Links carrying `data-contact-topic`
- * (e.g. "Talk to an expert" on a solution) preselect the topic.
+ * Pyxis in the visitor's mail client.
  */
 export function ContactForm() {
   const id = useId();
-  const [topic, setTopic] = useState<string>(contactTopics[0]);
   const [sent, setSent] = useState(false);
-
-  useEffect(() => {
-    const onClick = (event: MouseEvent) => {
-      const link = (event.target as Element | null)?.closest<HTMLElement>("[data-contact-topic]");
-      const value = link?.dataset.contactTopic;
-      if (value && contactTopics.includes(value)) setTopic(value);
-    };
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, []);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const get = (key: string) => String(data.get(key) ?? "").trim();
-    const subject = `${topic} — enquiry from ${get("company")}`;
+    const subject = `Enquiry from ${get("company")}`;
     const body = [
       get("message"),
       "",
@@ -58,25 +45,9 @@ export function ContactForm() {
         <input id={`${id}-company`} name="company" required autoComplete="organization" className={field} placeholder="Operator or organisation" />
         <label htmlFor={`${id}-company`} className={label}>Company</label>
       </div>
-      <div className="flex flex-col-reverse">
+      <div className="flex flex-col-reverse sm:col-span-2">
         <input id={`${id}-email`} name="email" type="email" required autoComplete="email" className={field} placeholder="name@company.com" />
         <label htmlFor={`${id}-email`} className={label}>Work email</label>
-      </div>
-      <div className="flex flex-col-reverse">
-        <select
-          id={`${id}-topic`}
-          name="topic"
-          value={topic}
-          onChange={(event) => setTopic(event.target.value)}
-          className={cn(field, "cursor-pointer appearance-none bg-[linear-gradient(45deg,transparent_50%,var(--muted)_50%),linear-gradient(135deg,var(--muted)_50%,transparent_50%)] bg-[length:5px_5px] bg-[position:calc(100%-6px)_55%,100%_55%] bg-no-repeat pr-6")}
-        >
-          {contactTopics.map((option) => (
-            <option key={option} value={option} className="bg-surface">
-              {option}
-            </option>
-          ))}
-        </select>
-        <label htmlFor={`${id}-topic`} className={label}>Topic</label>
       </div>
       <div className="flex flex-col-reverse sm:col-span-2">
         <textarea
