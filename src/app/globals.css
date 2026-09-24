@@ -1,26 +1,290 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                        */
+/* ------------------------------------------------------------------ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand — from the Pyxis logo */
+  --brand-navy: #051e36;
+  --brand-orange: #ce5c26;
+
+  /* Dark theme built on the brand navy */
+  --background: #020b16;
+  --background-raised: #041325;
+  --surface: #061a2f;
+  --surface-strong: #0a2542;
+  --foreground: #eef2f6;
+  --muted: #8fa0b3;
+  --subtle: #5e6e80;
+  --border: rgb(255 255 255 / 0.08);
+  --border-strong: rgb(255 255 255 / 0.16);
+
+  /* Signal blue — a light tint of the navy hue for data, network, ORION */
+  --primary: #a8c8ea;
+  --primary-strong: #4f8fd0;
+  /* Brand orange — section indices, primary actions, investigation traces.
+     4.9:1 on --background, so it is safe for text there. */
+  --accent: var(--brand-orange);
+
+  --container: 90rem;
+  --gutter: clamp(1rem, 4vw, 3rem);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-raised: var(--background-raised);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-accent: var(--accent);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-orange: var(--brand-orange);
+
+  --font-display: var(--font-display-face);
+  --font-sans: var(--font-body-face);
+  --font-mono: var(--font-mono-face);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme static {
+  --text-hero: clamp(2.6rem, 7.2vw, 8.5rem);
+  --text-hero--line-height: 0.92;
+  --text-hero--letter-spacing: -0.045em;
+  --text-section: clamp(2.5rem, 6vw, 6rem);
+  --text-section--line-height: 0.96;
+  --text-section--letter-spacing: -0.04em;
+  --text-display: clamp(1.75rem, 3.2vw, 3rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
+  --text-lead: clamp(1.125rem, 1.5vw, 1.5rem);
+  --text-lead--line-height: 1.45;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.14em;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                 */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    background: var(--background);
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body-face), ui-sans-serif, system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--background);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--primary);
+    outline-offset: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display-face), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------ */
+/* Utilities                                                            */
+/* ------------------------------------------------------------------ */
+
+@utility container-page {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility label {
+  font-family: var(--font-mono-face), ui-monospace, monospace;
+  font-size: var(--text-label);
+  line-height: var(--text-label--line-height);
+  letter-spacing: var(--text-label--letter-spacing);
+  text-transform: uppercase;
+}
+
+@utility hairline {
+  height: 1px;
+  background: var(--border);
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  background: var(--foreground);
+  color: var(--background);
+  padding: 0.75rem 1rem;
+}
+.skip-link:focus {
+  transform: none;
+}
+
+/* Film grain + column guides that tie every section together */
+.page-guides {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  justify-content: space-between;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.page-guides span {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(255 255 255 / 0.035) 20%,
+    rgb(255 255 255 / 0.035) 80%,
+    transparent
+  );
+}
+
+/* Before hydration, elements animated in by GSAP start hidden — only when JS
+   is present and the visitor allows motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-intro] {
+    opacity: 0;
+  }
+}
+
+/* Continuous data pulse along SVG paths (Technology section) */
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+.flow-pulse {
+  stroke-dasharray: 0.06 0.94;
+  animation: flow-dash var(--flow-duration, 4s) linear infinite;
+  animation-delay: var(--flow-delay, 0s);
+}
+
+@keyframes scan-y {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Client logo wall: columns scroll vertically by one copy's height */
+@keyframes logo-scroll {
+  to {
+    transform: translateY(-50%);
+  }
+}
+.logo-column {
+  animation: logo-scroll 50s linear infinite;
+  will-change: transform;
+}
+.logo-wall:hover .logo-column {
+  animation-play-state: paused;
+}
+
+/* Technology band: scrolls horizontally by one copy's width */
+@keyframes tech-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.tech-track {
+  animation: tech-scroll 38s linear infinite;
+  will-change: transform;
+}
+.tech-marquee:hover .tech-track {
+  animation-play-state: paused;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.2;
+  }
+}
+.blink {
+  animation: blink 1.6s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .flow-pulse {
+    stroke-dasharray: none;
+    opacity: 0.35;
+  }
+  .logo-column {
+    animation: none;
+  }
+  .logo-column-copy {
+    display: none;
+  }
+  .tech-track {
+    animation: none;
+    width: auto;
+    justify-content: center;
+  }
+  .tech-track > ul:first-child {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 0;
+  }
+  .tech-copy {
+    display: none;
+  }
 }
