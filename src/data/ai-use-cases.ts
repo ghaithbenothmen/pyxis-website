@@ -14,19 +14,19 @@ export const aiUseCases: AiUseCase[] = [
   },
   {
     id: "anomaly",
-    title: "Anomaly Detection",
+    title: "Network Issue Alerts",
     description: "Spot network issues before your customers notice.",
     domain: "Network",
   },
   {
     id: "churn",
-    title: "Customer Churn",
+    title: "Churn Prediction",
     description: "Know which customers may leave — and act in time.",
     domain: "Customer",
   },
   {
     id: "insights",
-    title: "Actionable Insights",
+    title: "Clear Business Insights",
     description: "Clear answers for your managers, not raw data.",
     domain: "Business",
   },
@@ -38,13 +38,13 @@ export const aiUseCases: AiUseCase[] = [
   },
   {
     id: "customer-view",
-    title: "Hyper-Personalized Customer View",
+    title: "Complete Customer View",
     description: "Everything you know about a customer, in one view.",
     domain: "Customer",
   },
   {
     id: "api",
-    title: "API Monetization",
+    title: "New Revenue from Data",
     description: "Turn your network data into new revenue through APIs.",
     domain: "Business",
   },

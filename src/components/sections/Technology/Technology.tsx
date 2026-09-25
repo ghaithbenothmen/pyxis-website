@@ -28,15 +28,12 @@ export function Technology() {
 
         {/* Mobile architecture */}
         <div className="mt-16 md:hidden">
-          <p className="label text-subtle">Data sources</p>
+          <p className="label text-subtle">Connects to</p>
           <ul className="mt-4 flex flex-wrap gap-2">
             {dataSources.map((source) => (
-              <li
-                key={source}
-                data-tech="chip"
-                className="label border border-border px-2.5 py-1.5 text-foreground normal-case tracking-[0.04em]"
-              >
-                {source}
+              <li key={source.label} data-tech="chip" className="border border-border px-2.5 py-1.5">
+                <span className="block text-sm leading-tight tracking-tight text-foreground">{source.label}</span>
+                <span className="label mt-0.5 block text-[0.6rem] normal-case text-subtle">{source.tech}</span>
               </li>
             ))}
           </ul>

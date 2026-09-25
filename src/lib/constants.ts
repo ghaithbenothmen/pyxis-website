@@ -37,7 +37,7 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "Use cases",
     links: [
-      { label: "Advanced Analytics", href: "/use-cases/advanced-analytics" },
+      { label: "Revenue & Network", href: "/use-cases/advanced-analytics" },
       { label: "Customer Experience", href: "/use-cases/customer-experience" },
       { label: "Compliance & Investigation", href: "/use-cases/compliance-investigation" },
     ],

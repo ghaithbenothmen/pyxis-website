@@ -1,15 +1,26 @@
+export type OrionSource = {
+  label: string;
+  /** Technical name, shown small under the label. */
+  tech: string;
+};
+
 /** Data sources shown converging into ORION. */
-export const orionSources: string[] = ["CDR", "DPI", "xDR", "NetFlow"];
+export const orionSources: OrionSource[] = [
+  { label: "Calls & sessions", tech: "CDR" },
+  { label: "Network traffic", tech: "DPI" },
+  { label: "Usage records", tech: "xDR" },
+  { label: "Internet flows", tech: "NetFlow" },
+];
 
 /** What ORION delivers. */
 export const orionOutputs: string[] = [
-  "Analytics",
-  "Customer Experience",
-  "Investigation",
+  "Revenue & network",
+  "Customer experience",
+  "Compliance",
 ];
 
 /** Processing steps cycled inside the core. */
-export const orionProcesses: string[] = ["Aggregate", "Cleanse", "Correlate"];
+export const orionProcesses: string[] = ["Collect", "Clean", "Connect"];
 
 export type OrionStage = {
   title: string;

@@ -10,12 +10,7 @@ export function HeroContent() {
       data-hero="content"
       className="container-page relative flex min-h-svh flex-col justify-between pt-24 pb-8 sm:pt-28 sm:pb-10"
     >
-      {/* Technical metadata row */}
-      <div className="label hidden justify-between gap-6 text-subtle md:flex">
-        <span data-hero="meta" data-intro>
-          Pyxis IT / Telecom data intelligence
-        </span>
-      </div>
+      <div aria-hidden="true" />
 
       <div className="py-16 md:py-20">
         <p data-hero="eyebrow" data-intro className="label mb-8 flex items-center gap-3 text-primary">
@@ -61,7 +56,7 @@ export function HeroContent() {
           <span className="relative block h-8 w-px overflow-hidden bg-border-strong">
             <span className="absolute inset-x-0 top-0 h-1/2 bg-primary motion-safe:animate-[scan-y_2s_var(--ease-in-out)_infinite]" />
           </span>
-          Scroll to follow the signal
+          Scroll to discover
         </span>
         <span data-hero="meta" data-intro className="hidden text-right sm:block">
           Active in {countriesReach} countries

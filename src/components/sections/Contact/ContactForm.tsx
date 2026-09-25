@@ -56,7 +56,7 @@ export function ContactForm() {
           required
           rows={4}
           className={cn(field, "resize-y")}
-          placeholder="Your network, data sources and what you would like to achieve"
+          placeholder="Tell us about your challenge: fraud, churn, compliance…"
         />
         <label htmlFor={`${id}-message`} className={label}>Message</label>
       </div>

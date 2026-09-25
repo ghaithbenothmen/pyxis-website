@@ -8,7 +8,7 @@ import {
 import { pad } from "@/lib/utils";
 import { InvestigationMap } from "./InvestigationMap";
 
-const evidence = ["Lawful Intercept", "CGNAT Mapping", "Evidence Pack", "LMS Compliance"];
+const evidence = ["Subscriber identified", "Timeline rebuilt", "Location confirmed", "Evidence file ready"];
 
 export function Investigation() {
   return (
@@ -22,9 +22,9 @@ export function Investigation() {
         <div className="container-page relative grid gap-12 py-20 lg:grid-cols-12 lg:items-center lg:gap-8 lg:py-24">
           <div className="relative z-10 lg:col-span-4">
             <p className="label flex items-center gap-4 text-muted">
-              <span className="text-accent">UC/03</span>
+              <span className="text-accent">03</span>
               <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
-              <span>In depth · Deep investigation</span>
+              <span>In depth · Compliance & investigation</span>
             </p>
             <h2 id="investigation-title" className="mt-8 text-section">
               Every event
@@ -60,9 +60,9 @@ export function Investigation() {
 
               {/* HUD corners */}
               <div aria-hidden="true" className="label pointer-events-none absolute inset-x-0 top-0 flex justify-between p-3 text-[0.625rem] text-subtle md:p-4">
-                <span>Trace / case view</span>
+                <span>Case view</span>
                 <span className="hidden sm:inline">
-                  {traceEvents.length} events · microsecond precision
+                  {traceEvents.length} linked events
                 </span>
               </div>
             </div>
@@ -84,7 +84,7 @@ export function Investigation() {
               className="mt-3 border border-accent/40 bg-background/90 p-4 backdrop-blur-sm md:absolute md:bottom-3 md:left-3 md:mt-0 md:w-60 lg:bottom-5 lg:left-5 lg:w-64"
             >
               <p className="label flex items-center justify-between text-accent">
-                <span>Evidence pack</span>
+                <span>Case file</span>
                 <span className="blink">●</span>
               </p>
               <ul className="mt-4 space-y-2 text-sm">
@@ -113,6 +113,7 @@ export function Investigation() {
                 {capability.title}
               </h3>
               <p className="mt-2 text-sm text-muted">{capability.description}</p>
+              <p className="label mt-4 text-[0.6rem] normal-case tracking-[0.08em] text-subtle">{capability.tech}</p>
             </li>
           ))}
         </FadeUp>

@@ -1,16 +1,23 @@
-/** Telecom and IT data sources ingested into the Pyxis pipeline. */
-export const dataSources: string[] = [
-  "DPI / IPFIX",
-  "CDR / xDR",
-  "Kafka Streams",
-  "Radio Counters",
-  "CGNAT / PCRF",
-  "RADIUS",
-  "BSS / Charging",
-  "NetFlow / DNS",
-  "VAS / IVR / KYC",
-  "OSS / CRM",
-  "IoT / Wi-Fi",
+export type DataSource = {
+  /** What the data is, in plain words. */
+  label: string;
+  /** The technical name, shown small for technical readers. */
+  tech: string;
+};
+
+/** Telecom and IT data sources ORION connects to. */
+export const dataSources: DataSource[] = [
+  { label: "Network traffic", tech: "DPI / IPFIX" },
+  { label: "Calls & sessions", tech: "CDR / xDR" },
+  { label: "Real-time data streams", tech: "Kafka" },
+  { label: "Radio network performance", tech: "Radio counters" },
+  { label: "IP address & policy logs", tech: "CGNAT / PCRF" },
+  { label: "Subscriber logins", tech: "RADIUS" },
+  { label: "Billing & charging", tech: "BSS / Charging" },
+  { label: "Internet usage", tech: "NetFlow / DNS" },
+  { label: "Customer services", tech: "VAS / IVR / KYC" },
+  { label: "CRM & operations", tech: "OSS / CRM" },
+  { label: "Devices & Wi-Fi", tech: "IoT / Wi-Fi" },
 ];
 
 export type PipelineStage = {
@@ -20,10 +27,10 @@ export type PipelineStage = {
 };
 
 export const pipeline: PipelineStage[] = [
-  { id: "aggregation", label: "Aggregation", caption: "Collect streams" },
-  { id: "cleansing", label: "Cleansing", caption: "Normalise, validate" },
-  { id: "correlation", label: "Correlation", caption: "Link every event" },
-  { id: "orion", label: "ORION", caption: "Intelligence layer" },
-  { id: "ai", label: "AI", caption: "ORION Intelligence" },
-  { id: "intelligence", label: "Intelligence", caption: "Actionable output" },
+  { id: "aggregation", label: "Collect", caption: "Every source, one place" },
+  { id: "cleansing", label: "Clean", caption: "Reliable, consistent data" },
+  { id: "correlation", label: "Connect", caption: "Events linked together" },
+  { id: "orion", label: "ORION", caption: "One intelligence layer" },
+  { id: "ai", label: "AI", caption: "Learns and predicts" },
+  { id: "intelligence", label: "Insight", caption: "Ready for your teams" },
 ];

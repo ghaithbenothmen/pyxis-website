@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { orionOutputs, orionProcesses, orionSources } from "@/data/orion";
-import { cn, pad } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 type Layout = {
   width: number;
@@ -17,7 +17,7 @@ const layouts = {
     width: 800,
     height: 640,
     core: { x: 400, y: 320, r: 70 },
-    source: { y: 70, w: 124, h: 48, xs: [115, 305, 495, 685] },
+    source: { y: 70, w: 160, h: 52, xs: [110, 303, 497, 690] },
     output: { y: 570, w: 196, h: 52, xs: [150, 400, 650] },
     font: 14,
   },
@@ -26,7 +26,7 @@ const layouts = {
     width: 320,
     height: 672,
     core: { x: 160, y: 290, r: 60 },
-    source: { y: 48, w: 70, h: 42, xs: [40, 120, 200, 280] },
+    source: { y: 48, w: 74, h: 50, xs: [40, 120, 200, 280] },
     output: { y: 520, w: 264, h: 44, xs: [160, 160, 160], ys: [520, 578, 636] },
     font: 13,
   },
@@ -69,7 +69,7 @@ export function OrionDiagram({
       viewBox={`0 0 ${L.width} ${L.height}`}
       data-variant={layout}
       role="img"
-      aria-label={`ORION architecture: ${orionSources.join(", ")} flow into ORION, which delivers ${orionOutputs.join(", ")}.`}
+      aria-label={`ORION architecture: ${orionSources.map((s) => s.label).join(", ")} flow into ORION, which delivers ${orionOutputs.join(", ")}.`}
       className={cn("h-auto w-full overflow-visible", className)}
       style={{ fontSize: L.font }}
     >
@@ -143,8 +143,11 @@ export function OrionDiagram({
       ))}
 
       {/* Sources */}
-      {orionSources.map((label, i) => {
+      {orionSources.map(({ label, tech }, i) => {
         const x = source.xs[i];
+        // Phones: the label wraps onto two lines inside the narrow box
+        const words = label.split(" ");
+        const lines = narrow ? [words.slice(0, -1).join(" "), words[words.length - 1]] : [label];
         return (
           <g key={label} data-orion="source">
             <rect
@@ -157,13 +160,17 @@ export function OrionDiagram({
             />
             <text
               x={x}
-              y={source.y - (narrow ? 0 : 4)}
               textAnchor="middle"
               dominantBaseline="middle"
               fill="var(--foreground)"
               className="font-display"
+              style={narrow ? { fontSize: 11 } : undefined}
             >
-              {label}
+              {lines.map((line, k) => (
+                <tspan key={line} x={x} y={source.y + (narrow ? -6 + k * 13 : -6)}>
+                  {line}
+                </tspan>
+              ))}
             </text>
             {!narrow ? (
               <text
@@ -175,7 +182,7 @@ export function OrionDiagram({
                 className="font-mono"
                 style={{ fontSize: 9, letterSpacing: "0.12em" }}
               >
-                SRC/{pad(i + 1)}
+                {tech}
               </text>
             ) : null}
           </g>

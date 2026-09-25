@@ -27,30 +27,33 @@ export function PipelineDiagram() {
     <svg
       viewBox={`0 0 ${W} ${H}`}
       role="img"
-      aria-label={`Data architecture: ${dataSources.join(", ")} flow through ${pipeline.map((s) => s.label).join(", then ")}.`}
+      aria-label={`Data architecture: ${dataSources.map((s) => s.label).join(", ")} flow through ${pipeline.map((s) => s.label).join(", then ")}.`}
       className="h-auto w-full overflow-visible"
     >
       {/* Source rows */}
       {dataSources.map((source, i) => (
-        <g key={source} data-tech="source">
+        <g key={source.label} data-tech="source">
+          <text x={LIST_X} y={rowY(i) - 7} dominantBaseline="middle" fill="var(--foreground)" className="font-display" style={{ fontSize: 15 }}>
+            {source.label}
+          </text>
           <text
             x={LIST_X}
-            y={rowY(i)}
+            y={rowY(i) + 11}
             dominantBaseline="middle"
-            fill="var(--foreground)"
+            fill="var(--subtle)"
             className="font-mono"
-            style={{ fontSize: 13, letterSpacing: "0.06em" }}
+            style={{ fontSize: 10, letterSpacing: "0.08em" }}
           >
-            {source}
+            {source.tech}
           </text>
-          <line x1={LIST_X + 180} y1={rowY(i)} x2={PORT_X - 6} y2={rowY(i)} stroke="var(--border)" />
+          <line x1={LIST_X + 206} y1={rowY(i)} x2={PORT_X - 6} y2={rowY(i)} stroke="var(--border)" />
           <rect x={PORT_X - 4} y={rowY(i) - 4} width="8" height="8" fill="var(--background)" stroke="var(--primary)" strokeOpacity="0.6" />
         </g>
       ))}
 
       {/* Convergence */}
       {dataSources.map((source, i) => (
-        <g key={`p-${source}`}>
+        <g key={`p-${source.label}`}>
           <path d={sourcePath(i)} pathLength={1} data-tech="path" fill="none" stroke="var(--border-strong)" />
           <path
             d={sourcePath(i)}

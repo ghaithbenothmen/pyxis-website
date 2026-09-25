@@ -52,9 +52,6 @@ export function SolutionPanels() {
                     {solution.title}
                   </span>
                 </span>
-                <span className={cn("transition-opacity duration-500", open ? "opacity-100" : "lg:opacity-0")}>
-                  {solution.capabilities.length} capabilities
-                </span>
               </div>
 
               <div>
@@ -78,23 +75,15 @@ export function SolutionPanels() {
                   <div className="overflow-hidden">
                     <p className="mt-5 max-w-lg text-muted">{solution.description}</p>
 
-                    <div className="mt-8 grid gap-8 border-t border-border pt-6 sm:grid-cols-2">
+                    <div className="mt-8 border-t border-border pt-6">
                       <div>
                         <p className="label mb-3 text-subtle">What you get</p>
-                        <ul className="space-y-1.5 text-sm">
+                        <ul className="grid gap-x-6 gap-y-1.5 text-sm sm:grid-cols-2">
                           {solution.capabilities.map((capability) => (
                             <li key={capability} className="flex items-center gap-2">
                               <span className="size-1 bg-primary" aria-hidden="true" />
                               {capability}
                             </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <p className="label mb-3 text-subtle">Works with</p>
-                        <ul className="label space-y-2 text-muted normal-case tracking-[0.06em]">
-                          {solution.sources.map((source) => (
-                            <li key={source}>{source}</li>
                           ))}
                         </ul>
                       </div>

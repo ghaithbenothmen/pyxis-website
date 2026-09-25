@@ -6,51 +6,61 @@ export type InvestigationStep = {
 /** The investigative workflow, from a single event to intelligence. */
 export const investigationSteps: InvestigationStep[] = [
   { id: "event", label: "Network event" },
-  { id: "timestamp", label: "Timestamp" },
-  { id: "fingerprint", label: "Packet fingerprint" },
-  { id: "cell", label: "Cell / BTS context" },
-  { id: "perimeter", label: "Geo-perimeter" },
-  { id: "correlation", label: "Multi-event correlation" },
-  { id: "intelligence", label: "Investigative intelligence" },
+  { id: "timestamp", label: "Exact time" },
+  { id: "fingerprint", label: "Type of activity" },
+  { id: "cell", label: "Network location" },
+  { id: "perimeter", label: "Area covered" },
+  { id: "correlation", label: "Linked events" },
+  { id: "intelligence", label: "Evidence ready" },
 ];
 
 export type Capability = {
   title: string;
   description: string;
+  /** Technical name, shown small for specialists. */
+  tech: string;
 };
 
 export const investigationCapabilities: Capability[] = [
   {
-    title: "Packet Volume Fingerprinting",
-    description: "Recognise activity by its traffic signature.",
+    title: "Recognise the type of activity",
+    description: "Tell what a session is from the shape of its traffic.",
+    tech: "Packet volume fingerprinting",
   },
   {
-    title: "Microsecond Timestamp Correlation",
+    title: "Rebuild the exact timeline",
     description: "Line up events from every source to the exact moment.",
+    tech: "Precise timestamp correlation",
   },
   {
-    title: "BTS / Cell-ID Geo-Perimeter",
-    description: "Know which area an activity came from.",
+    title: "Know where it happened",
+    description: "Place each activity in the network area it came from.",
+    tech: "Cell-ID geo-perimeter",
   },
   {
-    title: "Multi-Event Triangulation",
-    description: "Combine several events to pinpoint where and when.",
+    title: "Pinpoint where and when",
+    description: "Combine several events to narrow down place and time.",
+    tech: "Multi-event triangulation",
   },
   {
-    title: "Lawful Intercept",
+    title: "Lawful interception",
     description: "Respond to legal interception requests, within the law.",
+    tech: "Lawful Intercept (LI)",
   },
   {
-    title: "CGNAT Mapping",
-    description: "Find the real subscriber behind a shared IP address.",
+    title: "Find the subscriber behind an IP",
+    description: "Identify the real subscriber behind a shared internet address.",
+    tech: "CGNAT mapping",
   },
   {
-    title: "Evidence Pack",
-    description: "Deliver ready-to-use evidence files to the authorities.",
+    title: "Ready-to-use evidence",
+    description: "Deliver structured, auditable evidence files to the authorities.",
+    tech: "Evidence pack",
   },
   {
-    title: "LMS Compliance",
-    description: "Stay compliant with lawful-monitoring regulations.",
+    title: "Log retention & traceability",
+    description: "Keep and search network logs as regulations require.",
+    tech: "Log Management System (LMS)",
   },
 ];
 

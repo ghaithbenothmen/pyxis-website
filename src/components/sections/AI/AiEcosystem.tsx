@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { aiUseCases } from "@/data/ai-use-cases";
-import { cn, pad } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 const RADIUS_X = 36;
 const RADIUS_Y = 41;
@@ -133,7 +133,7 @@ export function AiEcosystem() {
         >
           <span aria-hidden="true" className="absolute inset-[-6%] rounded-full border border-primary/20" />
           <span className="label text-primary">
-            AI · {pad(active + 1)} / {pad(nodes.length)}
+            {current.domain}
           </span>
           <p
             key={current.id}
@@ -145,7 +145,6 @@ export function AiEcosystem() {
           <p className="mt-2 max-w-[24ch] text-xs leading-snug text-muted">
             {current.description}
           </p>
-          <span className="label mt-3 text-[0.65rem] text-subtle">{current.domain}</span>
         </div>
 
         {/* Nodes */}
@@ -205,7 +204,7 @@ function MobileEcosystem({ active, onSelect }: { active: number; onSelect: (inde
       <div className="relative mx-auto flex aspect-square w-[72%] max-w-[17rem] flex-col items-center justify-center rounded-full border border-border-strong bg-background p-7 text-center">
         <span aria-hidden="true" className="absolute inset-[-5%] rounded-full border border-primary/20" />
         <span className="label text-primary">
-          AI · {pad(active + 1)} / {pad(nodes.length)}
+          {current.domain}
         </span>
         <p
           key={current.id}
@@ -215,7 +214,6 @@ function MobileEcosystem({ active, onSelect }: { active: number; onSelect: (inde
           {current.title}
         </p>
         <p className="mt-2 text-xs leading-snug text-muted">{current.description}</p>
-        <span className="label mt-3 text-[0.65rem] text-subtle">{current.domain}</span>
       </div>
 
       {/* Trunk from the hub down to the use cases */}
