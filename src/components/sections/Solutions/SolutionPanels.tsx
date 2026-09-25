@@ -16,7 +16,7 @@ export function SolutionPanels() {
   const [active, setActive] = useState(0);
 
   return (
-    <ul className="flex flex-col gap-3 lg:h-[min(78svh,760px)] lg:min-h-[560px] lg:flex-row">
+    <ul className="flex flex-col gap-3 lg:h-[min(70svh,640px)] lg:min-h-[500px] lg:flex-row">
       {solutions.map((solution, i) => {
         const open = i === active;
         return (

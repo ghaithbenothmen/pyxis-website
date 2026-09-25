@@ -9,7 +9,7 @@ export function UseCaseCapabilities({ solution }: { solution: Solution }) {
   const capabilities = describeCapabilities(solution.capabilities);
 
   return (
-    <section aria-labelledby="capabilities-title" className="relative py-24 md:py-32">
+    <section aria-labelledby="capabilities-title" className="relative py-20 md:py-24">
       <div className="container-page">
         <SectionTitle
           id="capabilities-title"
@@ -19,7 +19,7 @@ export function UseCaseCapabilities({ solution }: { solution: Solution }) {
           intro={`${capabilities.length} capabilities, built on correlated telecom data and ORION Intelligence.`}
         />
 
-        <FadeUp as="ul" stagger={0.08} className="mt-16 grid border-t border-border md:mt-24 sm:grid-cols-2 lg:grid-cols-3">
+        <FadeUp as="ul" stagger={0.08} className="mt-12 grid border-t border-border md:mt-16 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((capability, i) => (
             <li
               key={capability.title}

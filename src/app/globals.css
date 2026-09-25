@@ -54,16 +54,16 @@
 }
 
 @theme static {
-  --text-hero: clamp(2.6rem, 7.2vw, 8.5rem);
+  --text-hero: clamp(2.4rem, 5.6vw, 6.5rem);
   --text-hero--line-height: 0.92;
   --text-hero--letter-spacing: -0.045em;
-  --text-section: clamp(2.5rem, 6vw, 6rem);
+  --text-section: clamp(2.1rem, 4.2vw, 4.5rem);
   --text-section--line-height: 0.96;
   --text-section--letter-spacing: -0.04em;
-  --text-display: clamp(1.75rem, 3.2vw, 3rem);
+  --text-display: clamp(1.5rem, 2.3vw, 2.25rem);
   --text-display--line-height: 1.05;
   --text-display--letter-spacing: -0.03em;
-  --text-lead: clamp(1.125rem, 1.5vw, 1.5rem);
+  --text-lead: clamp(1.05rem, 1.15vw, 1.25rem);
   --text-lead--line-height: 1.45;
   --text-label: 0.75rem;
   --text-label--line-height: 1.2;

@@ -18,8 +18,8 @@ export function Investigation() {
       aria-labelledby="investigation-title"
       className="group/inv relative"
     >
-      <div className="relative overflow-hidden lg:h-svh">
-        <div className="container-page relative grid gap-12 py-24 lg:h-full lg:grid-cols-12 lg:items-center lg:gap-8 lg:py-0 lg:pt-16">
+      <div className="relative overflow-hidden">
+        <div className="container-page relative grid gap-12 py-20 lg:grid-cols-12 lg:items-center lg:gap-8 lg:py-24">
           <div className="relative z-10 lg:col-span-4">
             <p className="label flex items-center gap-4 text-muted">
               <span className="text-accent">UC/03</span>
@@ -54,7 +54,7 @@ export function Investigation() {
             </ol>
           </div>
 
-          <div className="relative lg:col-span-8 lg:h-[80svh]">
+          <div className="relative lg:col-span-8 lg:h-[min(72svh,620px)]">
             <div data-inv="map" className="relative aspect-[10/7] w-full overflow-hidden border border-border bg-background-raised lg:aspect-auto lg:h-full">
               <InvestigationMap />
 
@@ -81,7 +81,7 @@ export function Investigation() {
 
             <div
               data-inv="evidence"
-              className="mt-3 border border-accent/40 bg-background/90 p-4 backdrop-blur-sm md:absolute md:right-3 md:bottom-3 md:mt-0 md:w-64 lg:right-5 lg:bottom-5 lg:w-72"
+              className="mt-3 border border-accent/40 bg-background/90 p-4 backdrop-blur-sm md:absolute md:bottom-3 md:left-3 md:mt-0 md:w-60 lg:bottom-5 lg:left-5 lg:w-64"
             >
               <p className="label flex items-center justify-between text-accent">
                 <span>Evidence pack</span>
@@ -101,7 +101,7 @@ export function Investigation() {
       </div>
 
       {/* Capabilities */}
-      <div className="container-page pb-24 md:pb-32 lg:pt-20">
+      <div className="container-page pb-20 md:pb-24 lg:pt-20">
         <FadeUp as="ul" stagger={0.06} className="grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
           {investigationCapabilities.map((capability, i) => (
             <li

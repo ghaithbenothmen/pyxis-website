@@ -1,6 +1,6 @@
 /**
  * About Pyxis. Positioning and ORION statements come from the approved company
- * description; values and offices from the existing Pyxis IT website. Nothing
+ * description; offices from the existing Pyxis IT website. Nothing
  * here is invented (no founding year, headcount or awards).
  */
 
@@ -16,17 +16,6 @@ export const principles: string[] = [
   "Scalable",
   "Fast time-to-value",
   "Built for real-world telecom environments",
-];
-
-export type Value = {
-  statement: string;
-  theme: string;
-};
-
-export const values: Value[] = [
-  { statement: "Skills are common. Talent is rare.", theme: "Talent" },
-  { statement: "Commitment is an act, not a word.", theme: "Commitment" },
-  { statement: "Quality is not an act, it is a habit.", theme: "Quality" },
 ];
 
 export type Presence = {

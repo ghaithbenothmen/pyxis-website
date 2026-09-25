@@ -8,7 +8,7 @@ export function Solutions() {
       name="solutions"
       id="use-cases"
       aria-labelledby="solutions-title"
-      className="relative py-24 md:py-32"
+      className="relative py-20 md:py-24"
     >
       <div className="container-page">
         <SectionTitle
@@ -18,7 +18,7 @@ export function Solutions() {
           lines={["Three use cases.", "One platform."]}
           intro="How operators put ORION to work — each built on the same correlated data and on ORION Intelligence."
         />
-        <div data-solutions="stage" className="mt-16 md:mt-24">
+        <div data-solutions="stage" className="mt-12 md:mt-16">
           <SolutionPanels />
         </div>
       </div>

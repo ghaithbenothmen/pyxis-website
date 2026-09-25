@@ -29,7 +29,7 @@ export function Contact({ index = "06" }: { index?: string }) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,transparent_0%,var(--background)_70%)]" />
       </div>
 
-      <div className="container-page pt-28 pb-24 md:pt-40 md:pb-32">
+      <div className="container-page pt-20 pb-20 md:pt-28 md:pb-24">
         <p className="label flex items-center gap-4 text-muted">
           <span className="text-accent">{index}</span>
           <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
@@ -39,7 +39,7 @@ export function Contact({ index = "06" }: { index?: string }) {
           <Reveal lines={["Ready to turn", "telecom data", "into intelligence?"]} />
         </h2>
 
-        <div className="mt-16 grid gap-16 border-t border-border pt-12 md:mt-24 lg:grid-cols-12 lg:gap-8">
+        <div className="mt-12 grid gap-16 border-t border-border pt-12 md:mt-16 lg:grid-cols-12 lg:gap-8">
           {/* Direct contact */}
           <FadeUp as="div" stagger={0.1} className="flex flex-col gap-10 lg:col-span-4">
             <p className="max-w-sm text-lead text-muted">

@@ -29,7 +29,7 @@ export function SectionTitle({
 }: SectionTitleProps) {
   return (
     <header className={cn("relative", className)}>
-      <FadeUp className="label mb-10 flex items-center gap-4 text-muted md:mb-14">
+      <FadeUp className="label mb-8 flex items-center gap-4 text-muted md:mb-10">
         <span className="text-accent">{index}</span>
         <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
         <span>{label}</span>

@@ -7,7 +7,7 @@ import { pad } from "@/lib/utils";
 /** The data sources behind the use case and how ORION processes them. */
 export function UseCaseData({ solution, index }: { solution: Solution; index: string }) {
   return (
-    <section aria-labelledby="data-title" className="relative border-t border-border bg-background-raised py-24 md:py-32">
+    <section aria-labelledby="data-title" className="relative border-t border-border bg-background-raised py-20 md:py-24">
       <div className="container-page">
         <SectionTitle
           id="data-title"
@@ -17,7 +17,7 @@ export function UseCaseData({ solution, index }: { solution: Solution; index: st
           intro="ORION ingests and correlates the sources below, then turns them into insights, dashboards, alerts and operational workflows."
         />
 
-        <div className="mt-16 grid gap-16 md:mt-24 lg:grid-cols-12 lg:gap-8">
+        <div className="mt-12 grid gap-16 md:mt-16 lg:grid-cols-12 lg:gap-8">
           <FadeUp className="lg:col-span-4">
             <h3 className="label text-subtle">Data sources</h3>
             <ul className="mt-6 flex flex-wrap gap-2">

@@ -10,7 +10,7 @@ export function Technology() {
       name="technology"
       id="technology"
       aria-labelledby="technology-title"
-      className="relative border-t border-border bg-background-raised py-24 md:py-32"
+      className="relative border-t border-border bg-background-raised py-20 md:py-24"
     >
       <div className="container-page">
         <SectionTitle
@@ -22,7 +22,7 @@ export function Technology() {
         />
 
         {/* Desktop / tablet architecture */}
-        <div data-tech="diagram" className="mt-20 hidden md:mt-28 md:block">
+        <div data-tech="diagram" className="mt-14 hidden md:mt-20 md:block">
           <PipelineDiagram />
         </div>
 

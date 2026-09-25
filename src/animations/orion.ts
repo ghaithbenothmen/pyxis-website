@@ -3,7 +3,8 @@ import { responsiveScene, select, type SceneAnimation } from "./global";
 
 /**
  * Moment 2 — Data → ORION → Intelligence.
- * Plays once, at a calm pace, when the diagram enters the viewport; then the
+ * Plays once, at a calm pace, when the diagram enters the viewport; then it
+ * stays live like the Data ecosystem: data keeps flowing in and out, and the
  * processing labels (Aggregate · Cleanse · Correlate) keep cycling in the core.
  */
 export const orionAnimation: SceneAnimation = (root) =>
@@ -12,10 +13,11 @@ export const orionAnimation: SceneAnimation = (root) =>
 
     const part = (name: string) => select(root, `[data-orion="${name}"]`);
     const steps = select(root, "[data-orion-step]");
+    // Rings spin around their own centre (the ORION core), which is not the
+    // middle of the viewBox in every layout.
     const svgOrigin = (el: Element) => {
-      const svg = el.closest("svg");
-      const box = svg?.viewBox.baseVal;
-      return box ? `${box.width / 2} ${box.height / 2}` : "0 0";
+      const circle = el.querySelector("circle");
+      return circle ? `${circle.getAttribute("cx")} ${circle.getAttribute("cy")}` : "0 0";
     };
 
     // Ambient rotation, independent of scroll.
@@ -46,6 +48,7 @@ export const orionAnimation: SceneAnimation = (root) =>
     gsap.set(part("out-line"), { strokeDasharray: 1, strokeDashoffset: 1 });
     gsap.set(part("output"), { opacity: 0, y: 20 });
     gsap.set(part("in-pulse"), { opacity: 0 });
+    gsap.set(part("flow"), { opacity: 0 });
 
     // Stage 1 — sources appear
     tl.fromTo(part("source"), { opacity: 0, y: -24 }, { opacity: 1, y: 0, stagger: 0.12, ease: "expo.out" }, 0);
@@ -85,8 +88,8 @@ export const orionAnimation: SceneAnimation = (root) =>
     tl.to(part("out-line"), { strokeDashoffset: 0, stagger: 0.1 }, 5);
     tl.to(part("output"), { opacity: 1, y: 0, stagger: 0.12, ease: "expo.out" }, 5.35);
 
-    // Stage 7 — hand over to ORION Intelligence (caption only)
-    tl.to({}, { duration: 0.6 }, 6);
+    // Stage 7 — the pipeline stays live: continuous flow in and out (CSS loop)
+    tl.to(part("flow"), { opacity: 1, duration: 0.8, ease: "power1.out" }, 6);
     tl.timeScale(1.15);
 
     // Processing labels loop in the core — built now (so it is cleaned up with

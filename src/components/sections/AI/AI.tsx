@@ -1,7 +1,5 @@
 import { Scene } from "@/components/animation/Scene";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { aiUseCases } from "@/data/ai-use-cases";
-import { pad } from "@/lib/utils";
 import { AiEcosystem } from "./AiEcosystem";
 
 export function AI() {
@@ -10,7 +8,7 @@ export function AI() {
       name="ai"
       id="intelligence"
       aria-labelledby="ai-title"
-      className="relative pt-8 pb-24 md:pt-12 md:pb-32"
+      className="relative pt-8 pb-20 md:pt-12 md:pb-24"
     >
       <div
         aria-hidden="true"
@@ -25,26 +23,9 @@ export function AI() {
           intro="The AI layer of ORION: machine intelligence applied to correlated telecom data — from network behaviour to every customer interaction."
         />
 
-        <div className="mt-20 hidden md:mt-24 md:block">
+        <div className="mt-12 md:mt-16">
           <AiEcosystem />
         </div>
-
-        {/* Mobile: a linear trace through the same use cases */}
-        <ol data-ai="list" className="relative mt-16 border-l border-border md:hidden">
-          {aiUseCases.map((useCase, i) => (
-            <li key={useCase.id} data-ai="item" className="relative pb-8 pl-6 last:pb-0">
-              <span
-                aria-hidden="true"
-                className="absolute top-1.5 -left-[5px] size-2.5 rounded-full border border-primary bg-background"
-              />
-              <span className="label text-primary">
-                {pad(i + 1)} · {useCase.domain}
-              </span>
-              <h3 className="mt-2 text-xl tracking-tight">{useCase.title}</h3>
-              <p className="mt-1 text-sm text-muted">{useCase.description}</p>
-            </li>
-          ))}
-        </ol>
       </div>
     </Scene>
   );

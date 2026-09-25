@@ -218,7 +218,7 @@ export function Navbar() {
                   href={item.href}
                   data-menu-item
                   onClick={() => setOpen(false)}
-                  className="flex items-baseline gap-4 py-1 font-display text-[clamp(2.5rem,12vw,4rem)] leading-[1.05] tracking-[-0.04em]"
+                  className="flex items-baseline gap-4 py-2 font-display text-[clamp(1.75rem,8vw,2.5rem)] leading-[1.1] tracking-[-0.03em]"
                 >
                   <span className="label text-accent">{pad(i + 1)}</span>
                   {item.label}

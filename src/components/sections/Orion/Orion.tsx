@@ -12,7 +12,7 @@ export function Orion() {
       className="group/orion relative"
     >
       <div
-        className="relative flex min-h-svh items-center overflow-hidden py-24 lg:h-svh lg:py-0"
+        className="relative flex min-h-svh items-center overflow-hidden py-20 lg:py-24"
       >
         {/* Backdrop grid */}
         <div
@@ -20,7 +20,7 @@ export function Orion() {
           className="absolute inset-0 bg-[linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] bg-[size:64px_64px] opacity-40 [mask-image:radial-gradient(ellipse_at_65%_50%,black_10%,transparent_70%)]"
         />
 
-        <div className="container-page relative grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-8 lg:pt-16">
+        <div className="container-page relative grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-8">
           <div className="lg:col-span-4">
             <p className="label flex items-center gap-4 text-muted">
               <span className="text-accent">03</span>
@@ -29,7 +29,7 @@ export function Orion() {
             </p>
             <h2
               id="orion-title"
-              className="mt-8 font-display text-[clamp(4rem,8vw,7.5rem)] font-medium leading-[0.85] tracking-[-0.05em]"
+              className="mt-8 font-display text-[clamp(3rem,5.5vw,5.5rem)] font-medium leading-[0.85] tracking-[-0.05em]"
             >
               ORION
             </h2>
@@ -69,7 +69,7 @@ export function Orion() {
           </div>
 
           <div data-orion="stage" className="relative lg:col-span-8">
-            <OrionDiagram layout="wide" className="hidden max-h-[82svh] sm:block" />
+            <OrionDiagram layout="wide" className="hidden max-h-[70svh] sm:block" />
             <OrionDiagram layout="tall" className="mx-auto max-w-sm sm:hidden" />
 
           </div>

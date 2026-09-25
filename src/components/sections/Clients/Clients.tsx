@@ -6,9 +6,9 @@ import { LogoMarquee } from "@/components/ui/LogoMarquee";
 /** Client references: headline above a scrolling logo band. */
 export function Clients() {
   return (
-    <section id="references" aria-labelledby="clients-title" className="relative py-24 md:py-32">
+    <section id="references" aria-labelledby="clients-title" className="relative py-20 md:py-24">
       <div className="container-page">
-        <FadeUp className="label mb-10 flex items-center gap-4 text-muted md:mb-14">
+        <FadeUp className="label mb-8 flex items-center gap-4 text-muted md:mb-10">
           <span className="text-accent">02</span>
           <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
           <span>References</span>
