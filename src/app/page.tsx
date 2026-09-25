@@ -5,7 +5,7 @@ import { Orion } from "@/components/sections/Orion/Orion";
 import { AI } from "@/components/sections/AI/AI";
 import { Solutions } from "@/components/sections/Solutions/Solutions";
 import { Technology } from "@/components/sections/Technology/Technology";
-import { Clients } from "@/components/sections/Clients/Clients";
+import { Presence } from "@/components/sections/Presence/Presence";
 import { Contact } from "@/components/sections/Contact/Contact";
 
 const ScrollRail = dynamic(() =>
@@ -19,7 +19,7 @@ export default function Home() {
       <main id="main" className="relative">
         <Hero />
         <About />
-        <Clients />
+        <Presence />
         {/* ORION chapter: the platform and its AI layer, ORION Intelligence */}
         <div id="orion">
           <Orion />

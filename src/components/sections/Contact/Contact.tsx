@@ -36,14 +36,15 @@ export function Contact({ index = "06" }: { index?: string }) {
           <span>Contact</span>
         </p>
         <h2 id="contact-title" className="mt-10 text-hero font-display">
-          <Reveal lines={["Ready to turn", "telecom data", "into intelligence?"]} />
+          <Reveal lines={["Let's talk about", "your business goals."]} />
         </h2>
 
         <div className="mt-12 grid gap-16 border-t border-border pt-12 md:mt-16 lg:grid-cols-12 lg:gap-8">
           {/* Direct contact */}
           <FadeUp as="div" stagger={0.1} className="flex flex-col gap-10 lg:col-span-4">
             <p className="max-w-sm text-lead text-muted">
-              Tell us about your network, your data sources and what you want to achieve.
+              Fraud, churn, compliance — tell us your challenge and we’ll show you how
+              ORION can help.
             </p>
             <div>
               <p className="label text-subtle">Email</p>
@@ -82,7 +83,7 @@ export function Contact({ index = "06" }: { index?: string }) {
 
           {/* Enquiry form */}
           <FadeUp delay={0.15} className="border border-border bg-background/70 p-6 backdrop-blur-sm md:p-10 lg:col-span-7 lg:col-start-6">
-            <p className="label mb-8 text-subtle">Send an enquiry</p>
+            <p className="label mb-8 text-subtle">Request a demo</p>
             <ContactForm />
           </FadeUp>
         </div>

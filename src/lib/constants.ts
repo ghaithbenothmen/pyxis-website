@@ -14,7 +14,7 @@ export type NavItem = {
 };
 
 export const navigation: NavItem[] = [
-  { label: "About", href: "/#about" },
+  { label: "Company", href: "/#about" },
   { label: "ORION", href: "/#orion" },
   { label: "Use cases", href: "/#use-cases" },
   { label: "Contact", href: "#contact" },
@@ -30,7 +30,7 @@ export const footerColumns: FooterColumn[] = [
     title: "Company",
     links: [
       { label: "About Pyxis", href: "/#about" },
-      { label: "References", href: "/#references" },
+      { label: "Where we work", href: "/#presence" },
       { label: "Contact", href: "#contact" },
     ],
   },
@@ -56,8 +56,8 @@ export const footerColumns: FooterColumn[] = [
 /** Every chapter of the page, in scroll order, for the scroll rail. */
 export const chapters = [
   { id: "top", label: "Intro" },
-  { id: "about", label: "About" },
-  { id: "references", label: "References" },
+  { id: "about", label: "Company" },
+  { id: "presence", label: "Presence" },
   { id: "orion", label: "ORION" },
   { id: "technology", label: "Ecosystem" },
   { id: "use-cases", label: "Use cases" },

@@ -15,8 +15,8 @@ export function Solutions() {
           id="solutions-title"
           index="05"
           label="Use cases"
-          lines={["Three use cases.", "One platform."]}
-          intro="How operators put ORION to work — each built on the same correlated data and on ORION Intelligence."
+          lines={["Built for your", "business priorities."]}
+          intro="Three ways operators put ORION to work: protecting revenue, keeping customers and staying compliant."
         />
         <div data-solutions="stage" className="mt-12 md:mt-16">
           <SolutionPanels />

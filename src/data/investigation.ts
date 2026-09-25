@@ -22,35 +22,35 @@ export type Capability = {
 export const investigationCapabilities: Capability[] = [
   {
     title: "Packet Volume Fingerprinting",
-    description: "Characterise sessions by the shape of their packet volumes.",
+    description: "Recognise activity by its traffic signature.",
   },
   {
     title: "Microsecond Timestamp Correlation",
-    description: "Align events across sources with microsecond precision.",
+    description: "Line up events from every source to the exact moment.",
   },
   {
     title: "BTS / Cell-ID Geo-Perimeter",
-    description: "Place activity within the coverage of specific cells.",
+    description: "Know which area an activity came from.",
   },
   {
     title: "Multi-Event Triangulation",
-    description: "Combine several events to narrow down where and when.",
+    description: "Combine several events to pinpoint where and when.",
   },
   {
     title: "Lawful Intercept",
-    description: "Support interception within the applicable legal framework.",
+    description: "Respond to legal interception requests, within the law.",
   },
   {
     title: "CGNAT Mapping",
-    description: "Resolve shared public addresses back to the subscriber.",
+    description: "Find the real subscriber behind a shared IP address.",
   },
   {
     title: "Evidence Pack",
-    description: "Assemble correlated findings into a structured evidence pack.",
+    description: "Deliver ready-to-use evidence files to the authorities.",
   },
   {
     title: "LMS Compliance",
-    description: "Meet lawful-monitoring compliance requirements.",
+    description: "Stay compliant with lawful-monitoring regulations.",
   },
 ];
 

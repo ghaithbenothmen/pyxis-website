@@ -20,7 +20,7 @@ export function ContactForm() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const get = (key: string) => String(data.get(key) ?? "").trim();
-    const subject = `Enquiry from ${get("company")}`;
+    const subject = `Demo request — ${get("company")}`;
     const body = [
       get("message"),
       "",
@@ -71,7 +71,7 @@ export function ContactForm() {
           type="submit"
           className="group/button inline-flex h-12 min-w-48 items-center justify-between gap-6 bg-foreground px-5 text-sm font-medium tracking-tight text-background transition-colors duration-500 ease-out-expo hover:bg-accent sm:h-14 sm:px-6"
         >
-          Send message
+          Request a demo
           <span className="relative flex size-4 overflow-hidden" aria-hidden="true">
             <Arrow className="transition-transform duration-500 ease-out-expo group-hover/button:translate-x-full" />
             <Arrow className="absolute inset-0 -translate-x-full transition-transform duration-500 ease-out-expo group-hover/button:translate-x-0" />

@@ -33,16 +33,53 @@ function arc(to: Point, from: Point = hub) {
   return `M ${from.x.toFixed(1)} ${from.y.toFixed(1)} Q ${(mx + nx * bend).toFixed(1)} ${(my + ny * bend).toFixed(1)} ${to.x.toFixed(1)} ${to.y.toFixed(1)}`;
 }
 
+type Side = "right" | "left" | "top" | "bottom";
+
+/**
+ * Where each always-visible name sits around its point, chosen by hand so
+ * the dense clusters (North Africa, Middle East, West Africa) stay legible.
+ */
+const sides: Record<string, Side> = {
+  "United Kingdom": "left",
+  Morocco: "left",
+  Tunisia: "top",
+  Algeria: "bottom",
+  Mauritania: "left",
+  Lebanon: "top",
+  Jordan: "left",
+  Egypt: "left",
+  Kuwait: "bottom",
+  "Côte d'Ivoire": "left",
+  Nigeria: "top",
+  Cameroon: "bottom",
+  "South Africa": "left",
+  Mexico: "left",
+  Chile: "left",
+};
+
+const sideClass: Record<Side, string> = {
+  right: "left-full top-1/2 -translate-y-1/2",
+  left: "right-full top-1/2 -translate-y-1/2",
+  top: "bottom-full left-1/2 -translate-x-1/2",
+  bottom: "top-full left-1/2 -translate-x-1/2",
+};
+
 const pct = (p: Point) => ({ left: `${(p.x / W) * 100}%`, top: `${(p.y / H) * 100}%` });
 
 /**
  * Dotted world map (generated from the Pyxis footprint image) with animated
- * links from the UK headquarters to every country Pyxis operates in. Each
- * point reveals its country name on hover or focus.
+ * links from the UK headquarters to every country Pyxis operates in. Country
+ * names are always shown and scale with the map, so the hand-placed layout
+ * holds at every width; below that width the map scrolls sideways instead.
  */
 export function FootprintMap() {
   return (
-    <Scene name="footprint" as="div" className="relative w-full" style={{ aspectRatio: `${W} / ${H}` }}>
+    <Scene name="footprint" as="div">
+    <div
+      data-footprint="scroller"
+      className="-mx-[var(--gutter)] overflow-x-auto overscroll-x-contain px-[var(--gutter)] [scrollbar-width:none] lg:mx-0 lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
+    >
+    <div className="@container relative w-full min-w-[920px] lg:min-w-0" style={{ aspectRatio: `${W} / ${H}` }}>
       <Image
         src={footprintMap.src}
         alt=""
@@ -91,7 +128,7 @@ export function FootprintMap() {
           ))}
       </svg>
 
-      {/* Country points: name on hover or focus */}
+      {/* Country points with their names */}
       <ul>
         {points.map((point) => (
           <li key={point.name} className="absolute" style={pct(point)}>
@@ -110,32 +147,30 @@ export function FootprintMap() {
                 )}
               />
               <span
-                role="tooltip"
-                className="label pointer-events-none absolute bottom-full left-1/2 mb-1.5 -translate-x-1/2 translate-y-1 border border-border-strong bg-background/90 px-2 py-1 text-[0.625rem] whitespace-nowrap text-foreground opacity-0 backdrop-blur-sm transition-[opacity,transform] duration-300 ease-out-expo group-hover/pin:translate-y-0 group-hover/pin:opacity-100 group-focus-visible/pin:translate-y-0 group-focus-visible/pin:opacity-100"
+                data-footprint="label"
+                aria-hidden="true"
+                className={cn(
+                  "pointer-events-none absolute block rounded-[2px] bg-background/85 px-[0.5em] py-[0.4em] text-[clamp(8.5px,0.86cqw,12px)] leading-none tracking-wide whitespace-nowrap backdrop-blur-[2px] transition-colors duration-300",
+                  sideClass[sides[point.name] ?? "right"],
+                  point.office
+                    ? "font-medium text-foreground"
+                    : "text-muted group-hover/pin:text-foreground group-focus-visible/pin:text-foreground",
+                )}
               >
                 {point.name}
-                {point.office ? <span className="text-accent"> · {point.office.role}</span> : null}
+                {point.office ? <span className="text-accent"> · {point.office.city}</span> : null}
               </span>
             </button>
           </li>
         ))}
       </ul>
 
-      {/* Office labels, always visible on larger screens */}
-      {points
-        .filter((p) => p.office)
-        .map((office) => (
-          <span
-            key={`label-${office.name}`}
-            data-footprint="label"
-            aria-hidden="true"
-            className="label pointer-events-none absolute hidden -translate-y-1/2 items-center gap-2 pl-4 whitespace-nowrap text-[0.65rem] text-foreground md:flex"
-            style={pct(office)}
-          >
-            <span className="h-px w-3 bg-accent" />
-            {office.office?.city}
-          </span>
-        ))}
+    </div>
+    </div>
+
+      <p className="label mt-4 flex items-center gap-2 text-subtle lg:hidden" aria-hidden="true">
+        <span>←</span> Swipe to explore the map <span>→</span>
+      </p>
     </Scene>
   );
 }

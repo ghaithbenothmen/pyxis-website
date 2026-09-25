@@ -41,19 +41,19 @@ export function UseCaseHero({ solution }: { solution: Solution }) {
           <p className="label mt-10 flex items-center gap-4 text-muted">
             <span className="text-accent">{solution.code}</span>
             <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
-            <span>ORION use case</span>
+            <span>{solution.title}</span>
           </p>
         </FadeUp>
 
         <h1 id="use-case-title" className="text-section mt-8 max-w-5xl">
-          <Reveal lines={[solution.title]} />
+          <Reveal lines={[solution.headline]} />
         </h1>
 
         <FadeUp delay={0.2} className="mt-8 grid gap-10 md:grid-cols-12 md:items-end">
           <p className="max-w-xl text-lead text-muted md:col-span-7">{solution.description}</p>
           <div className="flex flex-col gap-3 sm:flex-row md:col-span-5 md:justify-end">
             <Button href="#contact" className="w-full sm:w-auto sm:min-w-52">
-              Talk to an expert
+              Request a demo
             </Button>
             <Button href="/#use-cases" variant="ghost" className="w-full sm:w-auto sm:min-w-48">
               All use cases

@@ -46,7 +46,12 @@ export function SolutionPanels() {
 
             <div className="flex h-full flex-col justify-between p-6 md:p-8 lg:p-10">
               <div className="label flex items-center justify-between text-muted">
-                <span className="text-primary">{solution.code}</span>
+                <span>
+                  <span className="text-primary">{solution.code}</span>
+                  <span className={cn("ml-3 hidden transition-opacity duration-500 sm:inline", !open && "lg:opacity-0")}>
+                    {solution.title}
+                  </span>
+                </span>
                 <span className={cn("transition-opacity duration-500", open ? "opacity-100" : "lg:opacity-0")}>
                   {solution.capabilities.length} capabilities
                 </span>
@@ -60,7 +65,7 @@ export function SolutionPanels() {
                   )}
                 >
                   <Link href={hrefForUseCase(solution)} className="text-left transition-colors hover:text-primary">
-                    {solution.title}
+                    {solution.headline}
                   </Link>
                 </h3>
 
@@ -75,7 +80,7 @@ export function SolutionPanels() {
 
                     <div className="mt-8 grid gap-8 border-t border-border pt-6 sm:grid-cols-2">
                       <div>
-                        <p className="label mb-3 text-subtle">Capabilities</p>
+                        <p className="label mb-3 text-subtle">What you get</p>
                         <ul className="space-y-1.5 text-sm">
                           {solution.capabilities.map((capability) => (
                             <li key={capability} className="flex items-center gap-2">
@@ -86,7 +91,7 @@ export function SolutionPanels() {
                         </ul>
                       </div>
                       <div>
-                        <p className="label mb-3 text-subtle">Data sources</p>
+                        <p className="label mb-3 text-subtle">Works with</p>
                         <ul className="label space-y-2 text-muted normal-case tracking-[0.06em]">
                           {solution.sources.map((source) => (
                             <li key={source}>{source}</li>

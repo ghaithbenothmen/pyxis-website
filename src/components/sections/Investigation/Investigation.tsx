@@ -32,8 +32,8 @@ export function Investigation() {
               leaves a trace.
             </h2>
             <p className="mt-6 max-w-sm text-muted">
-              Regulatory compliance and deep investigation: correlate network events
-              by time, cell and volume until they form investigative intelligence.
+              Answer authorities’ requests quickly and reliably: ORION links each network
+              event to the right subscriber, place and time, and packages the evidence.
             </p>
 
             <ol className="mt-10 space-y-0 border-l border-border">

@@ -34,13 +34,13 @@ export function Orion() {
               ORION
             </h2>
             <p className="mt-6 max-w-sm text-lead text-muted">
-              Our flagship platform transforms complex network data into actionable
-              intelligence for telecom operators.
+              Our flagship platform turns the data your network already produces into
+              decisions your teams can act on.
             </p>
             <ul className="label mt-6 flex flex-wrap gap-2 text-foreground">
               {principles.slice(0, 3).map((principle) => (
-                <li key={principle} className="border border-border-strong px-2.5 py-1.5">
-                  {principle}
+                <li key={principle.tag} className="border border-border-strong px-2.5 py-1.5">
+                  {principle.tag}
                 </li>
               ))}
             </ul>

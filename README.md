@@ -25,9 +25,9 @@ src/
 ├── components/
 │   ├── animation/       Scene, FadeUp, Reveal, Parallax, Magnetic, SignalLine, NetworkField (canvas)
 │   ├── layout/          Navbar, Footer, LenisProvider, PageTransition, ScrollRail
-│   ├── sections/        Hero, About, Clients, Orion, AI (ORION Intelligence), Technology, Solutions (Use cases), Investigation, Contact
+│   ├── sections/        Hero, About, Presence, Orion, AI (ORION Intelligence), Technology, Solutions (Use cases), Investigation, Contact
 │   └── ui/              Button, Container, SectionTitle, Counter, Logo, Arrow
-├── data/                all repeated content (about, metrics, solutions, AI use cases, ORION, investigation, technologies, clients)
+├── data/                all repeated content (about, metrics, solutions, AI use cases, ORION, investigation, technologies, countries)
 ├── hooks/               useGsap, useLenis, useMediaQuery
 └── lib/                 assets (central asset registry), constants (site, nav, contact, motion), gsap (plugin registration), utils
 ```
@@ -44,7 +44,6 @@ interactive pieces (AI ecosystem, solution panels, navbar) and the canvas networ
 - **Temporary** — every other image, listed in `src/lib/assets.ts` and flagged `temporary: true`.
 - **Illustrative** — timestamps, cell IDs and fingerprints in the investigation map are
   visual examples only (`src/data/investigation.ts`).
-- **Clients** — originals in `assets/references/`, listed in `src/data/clients.ts`. The `mono/` (grey at rest) and `on-dark/` (colour on hover) variants in `public/images/references/` are generated from them. Higher-resolution or SVG logos will render sharper.
 
 ## Replacing assets
 
@@ -109,7 +108,7 @@ It rewrites `public/images/map/footprint.svg` (transparent dotted map) and
 
 ## Pages
 
-- `/` — home: Hero, About, References, ORION + ORION Intelligence, Data ecosystem, Use cases, Contact
+- `/` — home: Hero, About, Where we work, ORION + ORION Intelligence, Data ecosystem, Use cases, Contact
 - `/use-cases/[slug]` — one statically generated page per use case in `src/data/solutions.ts`
   (header, capabilities, data & ORION pipeline, next use case, contact). The Regulatory
   Compliance & Deep Investigation page carries the investigation sequence.

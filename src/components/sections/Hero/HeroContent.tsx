@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/animation/Magnetic";
-import { orionSources } from "@/data/orion";
+import { countriesReach } from "@/data/countries";
 
-const titleLines = ["Where telecom data", "becomes intelligence."];
+const titleLines = ["Turn your network data", "into revenue, loyalty", "and compliance."];
 
 export function HeroContent() {
   return (
@@ -20,7 +20,7 @@ export function HeroContent() {
       <div className="py-16 md:py-20">
         <p data-hero="eyebrow" data-intro className="label mb-8 flex items-center gap-3 text-primary">
           <span className="h-px w-8 bg-primary/60" aria-hidden="true" />
-          Network intelligence · Analytics · AI
+          For telecom operators · ORION
         </p>
 
         <h1 className="text-hero max-w-[14ch] font-display lg:max-w-none">
@@ -34,8 +34,9 @@ export function HeroContent() {
         </h1>
 
         <div className="mt-10 grid gap-10 md:mt-14 md:grid-cols-12 md:items-end">
-          <p data-hero="lead" data-intro className="max-w-md text-lead text-muted md:col-span-6 lg:col-span-5">
-            AI-powered intelligence for networks, customers and investigations.
+          <p data-hero="lead" data-intro className="max-w-lg text-lead text-muted md:col-span-6 lg:col-span-5">
+            ORION helps telecom operators protect revenue, keep their customers and meet
+            regulatory obligations — using the data their network already produces.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row md:col-span-6 md:justify-end lg:col-span-7">
             <div data-hero="cta" data-intro>
@@ -47,7 +48,7 @@ export function HeroContent() {
             </div>
             <div data-hero="cta" data-intro>
               <Button href="#contact" variant="ghost" className="w-full sm:w-auto sm:min-w-56">
-                Talk to an expert
+                Request a demo
               </Button>
             </div>
           </div>
@@ -63,7 +64,7 @@ export function HeroContent() {
           Scroll to follow the signal
         </span>
         <span data-hero="meta" data-intro className="hidden text-right sm:block">
-          Sources — {orionSources.join(" · ")}
+          Active in {countriesReach} countries
         </span>
       </div>
     </div>

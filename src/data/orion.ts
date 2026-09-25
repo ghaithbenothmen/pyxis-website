@@ -18,11 +18,11 @@ export type OrionStage = {
 
 /** Narration for each stage of the pinned ORION sequence. */
 export const orionStages: OrionStage[] = [
-  { title: "Ingest", caption: "Telecom data sources come online — CDR, DPI, xDR, NetFlow." },
-  { title: "Connect", caption: "Every source is linked into a single pipeline." },
-  { title: "Stream", caption: "Raw data flows toward ORION." },
-  { title: "Illuminate", caption: "ORION, the central intelligence layer, activates." },
-  { title: "Process", caption: "Data is aggregated, cleansed and correlated." },
-  { title: "Deliver", caption: "Insights, dashboards, alerts and operational workflows." },
-  { title: "Learn", caption: "ORION Intelligence turns it into decisions." },
+  { title: "Connect your data", caption: "Plug in the data your network already produces." },
+  { title: "Unify it", caption: "Every source brought together in one place." },
+  { title: "Stream it continuously", caption: "Up-to-date information, not monthly reports." },
+  { title: "One platform for all teams", caption: "Network, marketing and compliance share one view." },
+  { title: "Clean & link it automatically", caption: "Reliable, correlated data without manual work." },
+  { title: "Dashboards, alerts, workflows", caption: "Your teams see what matters, when it matters." },
+  { title: "Decide & act", caption: "ORION Intelligence turns insight into action." },
 ];

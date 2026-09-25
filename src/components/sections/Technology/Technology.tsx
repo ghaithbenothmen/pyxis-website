@@ -17,8 +17,8 @@ export function Technology() {
           id="technology-title"
           index="04"
           label="Data ecosystem"
-          lines={["Every source.", "One pipeline."]}
-          intro="Network, charging, customer and device data are aggregated, cleansed and correlated before ORION and AI turn them into intelligence."
+          lines={["Works with the systems", "you already have."]}
+          intro="ORION connects to your network, billing, CRM and customer systems — no need to replace what you have. For your technical teams, the full data flow is below."
         />
 
         {/* Desktop / tablet architecture */}

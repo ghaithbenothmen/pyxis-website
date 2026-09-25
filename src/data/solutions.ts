@@ -4,6 +4,8 @@ export type Solution = {
   id: string;
   code: string;
   title: string;
+  /** Business outcome, shown as the headline. */
+  headline: string;
   description: string;
   capabilities: string[];
   sources: string[];
@@ -16,8 +18,9 @@ export const solutions: Solution[] = [
     id: "advanced-analytics",
     code: "UC/01",
     title: "Advanced Analytics",
+    headline: "Protect revenue, run a smarter network",
     description:
-      "Correlate network and subscriber data at scale to detect fraud and anomalies, manage traffic and surface actionable insights.",
+      "Stop fraud, catch network issues early and give your managers clear answers — from the data your network already produces.",
     capabilities: [
       "Fraud Detection",
       "Anomaly Detection",
@@ -31,8 +34,9 @@ export const solutions: Solution[] = [
     id: "customer-experience",
     code: "UC/02",
     title: "Customer Experience Management",
+    headline: "Keep your customers, grow their value",
     description:
-      "Build a hyper-personalised view of every customer to anticipate churn and deliver the next best offer.",
+      "Understand every customer, see who may leave before they do, and offer the right service at the right moment.",
     capabilities: [
       "Customer Churn",
       "Next Best Offer",
@@ -45,8 +49,9 @@ export const solutions: Solution[] = [
     id: "compliance-investigation",
     code: "UC/03",
     title: "Regulatory Compliance & Deep Investigation",
+    headline: "Meet regulatory obligations with confidence",
     description:
-      "Correlate network events down to the microsecond and assemble evidence for lawful, compliant investigations.",
+      "Answer authorities' requests quickly and reliably, with evidence that links every event to the right subscriber, place and time.",
     capabilities: [
       "Lawful Intercept",
       "CGNAT Mapping",

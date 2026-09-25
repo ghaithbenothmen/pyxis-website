@@ -8,14 +8,21 @@ export const aboutLead =
   "Pyxis IT is a telecom technology company specializing in Telecom Data Intelligence.";
 
 export const aboutStatement =
-  "Our flagship platform, ORION, transforms complex network data into actionable intelligence for telecom operators — from network analytics and customer experience to fraud detection, regulatory compliance, AI and revenue intelligence.";
+  "Every operator sits on a huge amount of network data. With ORION, our platform, you put it to work: stop fraud, keep your customers, run a better network and answer regulators with confidence.";
 
-/** How ORION is built, as stated in the company description. */
-export const principles: string[] = [
-  "Vendor-agnostic",
-  "Scalable",
-  "Fast time-to-value",
-  "Built for real-world telecom environments",
+export type Principle = {
+  title: string;
+  detail: string;
+  /** Short tag shown next to the ORION title. */
+  tag: string;
+};
+
+/** How ORION is built (company description), phrased as client benefits. */
+export const principles: Principle[] = [
+  { title: "Works with your existing network", detail: "Vendor-agnostic — no need to replace your equipment.", tag: "Vendor-agnostic" },
+  { title: "Grows with you", detail: "Scalable, from one use case to many.", tag: "Scalable" },
+  { title: "Deploy without replacing anything", detail: "On-premise or in your sovereign cloud.", tag: "On-premise & sovereign" },
+  { title: "Proven in the field", detail: "Built for real-world telecom operations.", tag: "Field-proven" },
 ];
 
 export type Presence = {

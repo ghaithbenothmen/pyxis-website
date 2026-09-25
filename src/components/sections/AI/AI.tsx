@@ -19,8 +19,8 @@ export function AI() {
           id="ai-title"
           index="03"
           label="ORION Intelligence"
-          lines={["Intelligence that", "learns the network."]}
-          intro="The AI layer of ORION: machine intelligence applied to correlated telecom data — from network behaviour to every customer interaction."
+          lines={["AI that works", "for your business."]}
+          intro="Ready-to-use AI capabilities, built into ORION, that help your teams stop fraud, keep customers and grow revenue."
         />
 
         <div className="mt-12 md:mt-16">

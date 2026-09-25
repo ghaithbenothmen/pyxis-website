@@ -12,9 +12,9 @@ export function UseCaseData({ solution, index }: { solution: Solution; index: st
         <SectionTitle
           id="data-title"
           index={index}
-          label="Data & platform"
-          lines={["From network data", "to intelligence."]}
-          intro="ORION ingests and correlates the sources below, then turns them into insights, dashboards, alerts and operational workflows."
+          label="How it works"
+          lines={["Works with the systems", "you already run."]}
+          intro="For your technical teams: ORION connects to the sources below, correlates them, and delivers insights, dashboards, alerts and operational workflows."
         />
 
         <div className="mt-12 grid gap-16 md:mt-16 lg:grid-cols-12 lg:gap-8">

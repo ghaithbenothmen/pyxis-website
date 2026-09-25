@@ -218,6 +218,53 @@
   }
 }
 
+/* Company principles: small live details inside the icons */
+@keyframes principle-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.55;
+  }
+}
+.principle-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: principle-pulse 2.4s var(--ease-in-out) infinite;
+}
+@keyframes principle-bar {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.55);
+  }
+}
+.principle-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: principle-bar 2.8s var(--ease-in-out) infinite;
+}
+@keyframes principle-wave {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.principle-wave {
+  opacity: 0;
+  animation: principle-wave 1.8s ease-out infinite;
+}
+
 /* Logo band: scrolls horizontally by one copy's width */
 @keyframes marquee-scroll {
   to {

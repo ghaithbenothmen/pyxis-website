@@ -14,9 +14,9 @@ export function UseCaseCapabilities({ solution }: { solution: Solution }) {
         <SectionTitle
           id="capabilities-title"
           index="01"
-          label="Capabilities"
-          lines={["What ORION", "delivers here."]}
-          intro={`${capabilities.length} capabilities, built on correlated telecom data and ORION Intelligence.`}
+          label="What you get"
+          lines={["What your", "teams get."]}
+          intro="Ready-to-use capabilities, delivered by ORION on top of the data you already have."
         />
 
         <FadeUp as="ul" stagger={0.08} className="mt-12 grid border-t border-border md:mt-16 sm:grid-cols-2 lg:grid-cols-3">

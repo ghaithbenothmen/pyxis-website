@@ -6,6 +6,7 @@ import { solutionsAnimation } from "./solutions";
 import { investigationAnimation } from "./investigation";
 import { technologyAnimation } from "./technology";
 import { footprintAnimation } from "./footprint";
+import { principlesAnimation } from "./principles";
 
 /** Registry of section timelines, looked up by <Scene name="…">. */
 export const scenes = {
@@ -16,6 +17,7 @@ export const scenes = {
   investigation: investigationAnimation,
   technology: technologyAnimation,
   footprint: footprintAnimation,
+  principles: principlesAnimation,
 } satisfies Record<string, SceneAnimation>;
 
 export type SceneName = keyof typeof scenes;

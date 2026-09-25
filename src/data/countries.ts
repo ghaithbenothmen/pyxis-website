@@ -7,6 +7,9 @@ export type Country = {
   office?: { role: "Headquarters" | "Office"; city: string };
 };
 
+/** The only figure approved for publication (spec D2 / S03-R2): never the exact count. */
+export const countriesReach = "20+";
+
 /** Countries where Pyxis operates (list supplied by Pyxis). */
 export const countries: Country[] = [
   { name: "United Kingdom", lat: 52.2, lon: -3.0, office: { role: "Headquarters", city: "Kington" } },

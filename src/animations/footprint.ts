@@ -7,6 +7,12 @@ import { responsiveScene, select, type SceneAnimation } from "./global";
  */
 export const footprintAnimation: SceneAnimation = (root) =>
   responsiveScene(({ reduced }) => {
+    // Small screens: the map is wider than the viewport; start on Europe / Africa
+    const scroller = root.querySelector<HTMLElement>('[data-footprint="scroller"]');
+    if (scroller && scroller.scrollWidth > scroller.clientWidth) {
+      scroller.scrollLeft = scroller.scrollWidth * 0.52 - scroller.clientWidth / 2;
+    }
+
     if (reduced) return;
     const part = (name: string) => select<SVGElement | HTMLElement>(root, `[data-footprint="${name}"]`);
 
@@ -28,8 +34,8 @@ export const footprintAnimation: SceneAnimation = (root) =>
         scrollTrigger: { trigger: root, start: "top 75%", toggleActions: "play none none none" },
       })
       .from(part("dots"), { opacity: 0, duration: 1.4, ease: "power2.out" }, 0)
-      .from(part("label"), { opacity: 0, x: -8, duration: 0.8, stagger: 0.15 }, 0.4)
       .to(part("link"), { strokeDashoffset: 0, duration: 1.2, stagger: 0.09, ease: "power2.inOut" }, 0.5)
       .to(part("node"), { scale: 1, duration: 0.5, stagger: 0.09, ease: "back.out(3)" }, 1.4)
+      .from(part("label"), { opacity: 0, duration: 0.6, stagger: 0.06 }, 1.5)
       .to(part("pulse"), { opacity: 1, duration: 0.8, stagger: 0.05 }, 2.2);
   });

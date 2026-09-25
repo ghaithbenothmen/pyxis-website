@@ -168,8 +168,8 @@ export function Navbar() {
                 </li>
               ))}
             </ul>
-            <Button href="#contact" size="sm" className="min-w-36">
-              Contact us
+            <Button href="#contact" size="sm" className="min-w-44">
+              Request a demo
             </Button>
           </nav>
 
