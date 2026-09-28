@@ -4,7 +4,7 @@ import { dataSources, pipeline } from "@/data/technologies";
 import { pad } from "@/lib/utils";
 import { PipelineDiagram } from "./PipelineDiagram";
 
-export function Technology() {
+export function Technology({ index }: { index: string }) {
   return (
     <Scene
       name="technology"
@@ -15,7 +15,7 @@ export function Technology() {
       <div className="container-page">
         <SectionTitle
           id="technology-title"
-          index="04"
+          index={index}
           label="Data ecosystem"
           lines={["Works with the systems", "you already have."]}
           intro="ORION connects to your network, billing, CRM and customer systems — no need to replace what you have. For your technical teams, the full data flow is below."

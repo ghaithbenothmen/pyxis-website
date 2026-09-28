@@ -36,7 +36,7 @@ export function HeroContent() {
           <div className="flex flex-col gap-3 sm:flex-row md:col-span-6 md:justify-end lg:col-span-7">
             <div data-hero="cta" data-intro>
               <Magnetic className="block sm:inline-block">
-                <Button href="#orion" className="w-full sm:w-auto sm:min-w-52">
+                <Button href="/platform" className="w-full sm:w-auto sm:min-w-52">
                   Explore ORION
                 </Button>
               </Magnetic>

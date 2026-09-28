@@ -108,7 +108,11 @@ It rewrites `public/images/map/footprint.svg` (transparent dotted map) and
 
 ## Pages
 
-- `/` — home: Hero, About, Where we work, ORION + ORION Intelligence, Data ecosystem, Solutions, Contact
+- `/` — home: Hero (with proof points), ORION overview, Solutions overview, Where we work, Contact
+- `/platform` — ORION in full, ORION Intelligence, Data ecosystem
+- `/solutions` — the six solutions grouped by audience
+- `/company` — positioning, principles, global presence map
+- `/legal`, `/privacy` — legal pages (noindex until Pyxis supplies the text)
 - `/solutions/[audience]` — one statically generated page per audience in `src/data/solutions.ts`
   (`service-providers`, `governments-regulators`): header, its three solutions, data & ORION
   pipeline, link to the other audience, contact. The Governments & Regulators page also carries

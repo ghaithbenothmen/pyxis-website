@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { audiences, getAudience } from "@/data/solutions";
 import { AudienceHero } from "@/components/sections/SolutionPage/AudienceHero";
@@ -10,8 +11,6 @@ import { SubscriberTrace } from "@/components/sections/SolutionPage/SubscriberTr
 import { AuthorityPrinciples } from "@/components/sections/SolutionPage/AuthorityPrinciples";
 import { Contact } from "@/components/sections/Contact/Contact";
 
-const shareImage = { url: "/opengraph-image.png", width: 1200, height: 630, alt: "Pyxis — Where telecom data becomes intelligence." };
-
 /** One page per audience; anything else is a 404. */
 export const dynamicParams = false;
 
@@ -22,16 +21,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/solutions/[audience]">): Promise<Metadata> {
   const audience = getAudience((await params).audience);
   if (!audience) return {};
-  const url = `/solutions/${audience.id}`;
-  return {
-    // Full titles from the spec, so they bypass the "| Pyxis" template
-    title: { absolute: audience.seo.title },
-    description: audience.seo.description,
-    alternates: { canonical: url },
-    // Page-level Open Graph replaces the root one, so the share image is restated
-    openGraph: { title: audience.seo.title, description: audience.seo.description, url, images: [shareImage] },
-    twitter: { title: audience.seo.title, description: audience.seo.description, images: [shareImage] },
-  };
+  return pageMetadata({ ...audience.seo, path: `/solutions/${audience.id}` });
 }
 
 export default async function AudiencePage({ params }: PageProps<"/solutions/[audience]">) {

@@ -1,47 +1,34 @@
-import { aboutLead, aboutStatement, presence } from "@/data/about";
-import { SectionTitle } from "@/components/ui/SectionTitle";
+import { aboutStatement, presence } from "@/data/about";
 import { FadeUp } from "@/components/animation/FadeUp";
-import { SignalLine } from "@/components/animation/SignalLine";
 import { FootprintMap } from "./FootprintMap";
 import { Principles } from "./Principles";
 
 /**
- * Who Pyxis is: positioning, the ORION promise and how it is built, and the
- * company's global presence.
+ * Body of the Company page: the ORION promise, what sets Pyxis apart and the
+ * company's global presence. The page hero above carries the H1.
  */
 export function About() {
   return (
-    <section id="company" aria-labelledby="about-title" className="relative pb-20 md:pb-24">
-      {/* Former anchor, kept so old /#about links still land here (spec S04-R4) */}
-      <span id="about" aria-hidden="true" className="absolute top-0" />
+    <section id="company" aria-label="About Pyxis" className="relative pb-20 md:pb-24">
       <div className="container-page">
-        <SignalLine className="mx-auto mb-10 md:mb-14 md:ml-0" />
-
-        <SectionTitle
-          id="about-title"
-          index="01"
-          label="Company"
-          lines={["Telecom Data", "Intelligence."]}
-          intro={aboutLead}
-        />
-
         {/* Statement + what sets Pyxis apart */}
-        <div className="mt-14 border-t border-border pt-12 md:mt-20">
+        <div className="border-t border-border pt-12">
           <FadeUp className="max-w-4xl">
             <p className="font-display text-[clamp(1.25rem,2vw,1.9rem)] leading-[1.15] tracking-[-0.025em] text-foreground">
               {aboutStatement}
             </p>
           </FadeUp>
           <div className="mt-12 md:mt-16">
+            <h2 className="sr-only">What sets Pyxis apart</h2>
             <Principles />
           </div>
         </div>
 
         {/* Global presence */}
-        <div className="mt-16 md:mt-24">
+        <div id="presence" className="mt-16 scroll-mt-24 md:mt-24">
           <FadeUp className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div>
-              <h3 className="label text-subtle">Global presence</h3>
+              <h2 className="label text-subtle">Global presence</h2>
               <p className="mt-4 max-w-xl font-display text-[clamp(1.25rem,1.9vw,1.75rem)] leading-[1.1] tracking-[-0.03em]">
                 Headquartered in the United Kingdom, with an office in Tunis.
               </p>

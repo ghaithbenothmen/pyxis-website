@@ -23,9 +23,9 @@ export type NavGroup = {
 
 /** Header navigation: simple links, plus the demo button. */
 export const navigation: NavItem[] = [
-  { label: "Company", href: "/#company" },
-  { label: "ORION", href: "/#orion" },
-  { label: "Solutions", href: "/#solutions" },
+  { label: "Company", href: "/company" },
+  { label: "ORION", href: "/platform" },
+  { label: "Solutions", href: "/solutions" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -34,9 +34,9 @@ export const footerNavigation: NavGroup[] = [
   {
     label: "Platform",
     items: [
-      { label: "ORION", href: "/#orion" },
-      { label: "ORION Intelligence", href: "/#intelligence" },
-      { label: "Data ecosystem", href: "/#technology" },
+      { label: "ORION", href: "/platform" },
+      { label: "ORION Intelligence", href: "/platform#intelligence" },
+      { label: "Data ecosystem", href: "/platform#technology" },
     ],
   },
   {
@@ -49,8 +49,8 @@ export const footerNavigation: NavGroup[] = [
   {
     label: "Company",
     items: [
-      { label: "About", href: "/#company" },
-      { label: "Global presence", href: "/#presence" },
+      { label: "About", href: "/company" },
+      { label: "Global presence", href: "/company#presence" },
       { label: "Contact", href: "#contact" },
     ],
   },
@@ -65,11 +65,9 @@ export const legalLinks: NavItem[] = [
 /** Every chapter of the page, in scroll order, for the scroll rail. */
 export const chapters = [
   { id: "top", label: "Intro" },
-  { id: "company", label: "Company" },
-  { id: "presence", label: "Presence" },
   { id: "orion", label: "ORION" },
-  { id: "technology", label: "Ecosystem" },
   { id: "solutions", label: "Solutions" },
+  { id: "presence", label: "Presence" },
   { id: "contact", label: "Contact" },
 ] as const;
 

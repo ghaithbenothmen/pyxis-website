@@ -23,10 +23,9 @@ export function Navbar() {
   const lenis = useLenis();
   const pathname = usePathname();
   const activeHash = section?.path === pathname ? section.hash : null;
+  // Pages own their menu entry, including sub-pages (/solutions/…)
   const isActive = (href: string) =>
-    (activeHash !== null && hashOf(href) === activeHash) ||
-    // Solution pages keep "Solutions" highlighted
-    (href === "/#solutions" && pathname.startsWith("/solutions"));
+    pathname === href || pathname.startsWith(`${href}/`) || (activeHash !== null && hashOf(href) === activeHash);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);

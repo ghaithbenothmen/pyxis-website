@@ -2,7 +2,7 @@ import { Scene } from "@/components/animation/Scene";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { AiEcosystem } from "./AiEcosystem";
 
-export function AI() {
+export function AI({ index }: { index: string }) {
   return (
     <Scene
       name="ai"
@@ -17,7 +17,7 @@ export function AI() {
       <div className="container-page relative">
         <SectionTitle
           id="ai-title"
-          index="03"
+          index={index}
           label="ORION Intelligence"
           lines={["AI that works", "for your business."]}
           intro="Ready-to-use AI capabilities, built into ORION, that help your teams stop fraud, keep customers and grow revenue."

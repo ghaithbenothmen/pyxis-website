@@ -32,7 +32,7 @@ export function AudienceHero({ audience }: { audience: Audience }) {
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/#solutions" className="transition-colors hover:text-foreground">Solutions</Link>
+                <Link href="/solutions" className="transition-colors hover:text-foreground">Solutions</Link>
               </li>
               <li aria-hidden="true">/</li>
               <li aria-current="page" className="text-foreground">{audience.label}</li>
@@ -55,7 +55,7 @@ export function AudienceHero({ audience }: { audience: Audience }) {
             <Button href="#contact" className="w-full sm:w-auto sm:min-w-52">
               {audience.cta.label}
             </Button>
-            <Button href="/#solutions" variant="ghost" className="w-full sm:w-auto sm:min-w-48">
+            <Button href="/solutions" variant="ghost" className="w-full sm:w-auto sm:min-w-48">
               All solutions
             </Button>
           </div>

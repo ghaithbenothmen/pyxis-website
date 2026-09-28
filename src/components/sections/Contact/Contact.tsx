@@ -6,8 +6,8 @@ import { Reveal } from "@/components/animation/Reveal";
 import { FadeUp } from "@/components/animation/FadeUp";
 import { ContactForm } from "./ContactForm";
 
-/** Contact block shared by every page; `index` follows each page's numbering. */
-export function Contact({ index = "06" }: { index?: string }) {
+/** Contact block shared by every page; `index` follows the page's numbering, if it has one. */
+export function Contact({ index }: { index?: string }) {
   return (
     <section
       id="contact"
@@ -31,8 +31,12 @@ export function Contact({ index = "06" }: { index?: string }) {
 
       <div className="container-page pt-20 pb-20 md:pt-28 md:pb-24">
         <p className="label flex items-center gap-4 text-muted">
-          <span className="text-accent">{index}</span>
-          <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
+          {index ? (
+            <>
+              <span className="text-accent">{index}</span>
+              <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
+            </>
+          ) : null}
           <span>Contact</span>
         </p>
         <h2 id="contact-title" className="mt-10 text-hero font-display">

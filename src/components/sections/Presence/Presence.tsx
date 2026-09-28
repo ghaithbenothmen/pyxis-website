@@ -6,14 +6,14 @@ import { Reveal } from "@/components/animation/Reveal";
  * Where Pyxis works, without naming any client: a headline and a scrolling
  * band of the countries where operators run ORION.
  */
-export function Presence() {
+export function Presence({ index }: { index: string }) {
   const names = countries.map((country) => country.name);
 
   return (
     <section id="presence" aria-labelledby="presence-title" className="relative py-20 md:py-24">
       <div className="container-page">
         <FadeUp className="label mb-8 flex items-center gap-4 text-muted md:mb-10">
-          <span className="text-accent">02</span>
+          <span className="text-accent">{index}</span>
           <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
           <span>Where we work</span>
         </FadeUp>
