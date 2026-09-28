@@ -1,17 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { Solution } from "@/data/solutions";
+import type { Audience } from "@/data/solutions";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/animation/Reveal";
 import { FadeUp } from "@/components/animation/FadeUp";
 
-/** Use-case page header: breadcrumb, code, title, description and imagery. */
-export function UseCaseHero({ solution }: { solution: Solution }) {
+/** Audience page header: breadcrumb, audience, headline, description and imagery. */
+export function AudienceHero({ audience }: { audience: Audience }) {
   return (
-    <section id="top" aria-labelledby="use-case-title" className="relative isolate overflow-hidden">
+    <section id="top" aria-labelledby="solution-title" className="relative isolate overflow-hidden">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <Image
-          src={solution.image.src}
+          src={audience.image.src}
           alt=""
           fill
           preload
@@ -32,31 +32,31 @@ export function UseCaseHero({ solution }: { solution: Solution }) {
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/#use-cases" className="transition-colors hover:text-foreground">Use cases</Link>
+                <Link href="/#solutions" className="transition-colors hover:text-foreground">Solutions</Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-foreground">{solution.title}</li>
+              <li aria-current="page" className="text-foreground">{audience.label}</li>
             </ol>
           </nav>
           <p className="label mt-10 flex items-center gap-4 text-muted">
-            <span className="text-accent">{solution.code}</span>
+            <span className="text-accent">{audience.solutions.length} solutions</span>
             <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
-            <span>{solution.title}</span>
+            <span>{audience.who}</span>
           </p>
         </FadeUp>
 
-        <h1 id="use-case-title" className="text-section mt-8 max-w-5xl">
-          <Reveal lines={[solution.headline]} />
+        <h1 id="solution-title" className="text-section mt-8 max-w-5xl">
+          <Reveal lines={[audience.headline]} />
         </h1>
 
         <FadeUp delay={0.2} className="mt-8 grid gap-10 md:grid-cols-12 md:items-end">
-          <p className="max-w-xl text-lead text-muted md:col-span-7">{solution.description}</p>
+          <p className="max-w-xl text-lead text-muted md:col-span-7">{audience.description}</p>
           <div className="flex flex-col gap-3 sm:flex-row md:col-span-5 md:justify-end">
             <Button href="#contact" className="w-full sm:w-auto sm:min-w-52">
-              Request a demo
+              {audience.cta.label}
             </Button>
-            <Button href="/#use-cases" variant="ghost" className="w-full sm:w-auto sm:min-w-48">
-              All use cases
+            <Button href="/#solutions" variant="ghost" className="w-full sm:w-auto sm:min-w-48">
+              All solutions
             </Button>
           </div>
         </FadeUp>

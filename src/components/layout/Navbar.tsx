@@ -12,14 +12,21 @@ import { Button } from "@/components/ui/Button";
 
 const primaryLinks = navigation.filter((item) => item.href !== "#contact");
 
+/** In-page hash of a nav item (`/#orion` → `#orion`), or null for a route. */
+const hashOf = (href: string) => (href.startsWith("/#") ? href.slice(1) : href.startsWith("#") ? href : null);
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   // Active section, remembered per page so it resets on navigation
-  const [section, setSection] = useState<{ path: string; href: string } | null>(null);
+  const [section, setSection] = useState<{ path: string; hash: string } | null>(null);
   const lenis = useLenis();
   const pathname = usePathname();
-  const active = section?.path === pathname ? section.href : null;
+  const activeHash = section?.path === pathname ? section.hash : null;
+  const isActive = (href: string) =>
+    (activeHash !== null && hashOf(href) === activeHash) ||
+    // Solution pages keep "Solutions" highlighted
+    (href === "/#solutions" && pathname.startsWith("/solutions"));
 
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -36,14 +43,14 @@ export function Navbar() {
   // Highlight the section currently in view (re-bound on every page)
   useEffect(() => {
     const targets = navigation
-      .map((item) => item.href.replace(/^\//, ""))
-      .filter((hash) => hash.startsWith("#"))
+      .map((item) => hashOf(item.href))
+      .filter((hash): hash is string => hash !== null)
       .map((hash) => document.querySelector<HTMLElement>(hash))
       .filter((el): el is HTMLElement => Boolean(el));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setSection({ path: pathname, href: `/#${entry.target.id}` });
+          if (entry.isIntersecting) setSection({ path: pathname, hash: `#${entry.target.id}` });
         });
       },
       { rootMargin: "-45% 0px -50% 0px" },
@@ -142,11 +149,11 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "container-page relative z-10 flex items-center justify-between transition-[height] duration-700 ease-out-expo",
+            "container-page relative z-10 flex items-center justify-between gap-4 transition-[height] duration-700 ease-out-expo",
             scrolled ? "h-16" : "h-20 md:h-24",
           )}
         >
-          <Link href="/#top" aria-label="Pyxis IT — home" onClick={() => setOpen(false)}>
+          <Link href="/#top" aria-label="Pyxis — home" onClick={() => setOpen(false)}>
             <Logo eager />
           </Link>
 
@@ -156,7 +163,7 @@ export function Navbar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    aria-current={active === item.href ? "true" : undefined}
+                    aria-current={isActive(item.href) ? "true" : undefined}
                     className="group relative py-2 text-sm text-muted transition-colors duration-300 hover:text-foreground aria-[current]:text-foreground"
                   >
                     {item.label}
@@ -168,35 +175,45 @@ export function Navbar() {
                 </li>
               ))}
             </ul>
-            <Button href="#contact" size="sm" className="min-w-44">
+            <Button href="#contact" variant="accent" size="sm" className="min-w-44">
               Request a demo
             </Button>
           </nav>
 
-          <button
-            ref={toggleRef}
-            type="button"
-            className="label flex h-10 items-center gap-3 text-foreground md:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span>{open ? "Close" : "Menu"}</span>
-            <span aria-hidden="true" className="relative block h-2.5 w-6">
-              <span
-                className={cn(
-                  "absolute left-0 h-px w-full bg-current transition-transform duration-500 ease-out-expo",
-                  open ? "top-1/2 rotate-45" : "top-0",
-                )}
-              />
-              <span
-                className={cn(
-                  "absolute left-0 h-px w-full bg-current transition-transform duration-500 ease-out-expo",
-                  open ? "top-1/2 -rotate-45" : "bottom-0",
-                )}
-              />
-            </span>
-          </button>
+          <div className="flex items-center gap-4 md:hidden">
+            {/* Demo stays one tap away on phones too */}
+            <Link
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="label flex h-9 items-center bg-accent px-3 text-background transition-colors duration-500 hover:bg-foreground max-[359px]:hidden"
+            >
+              Demo
+            </Link>
+            <button
+              ref={toggleRef}
+              type="button"
+              className="label flex h-10 items-center gap-3 text-foreground"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span>{open ? "Close" : "Menu"}</span>
+              <span aria-hidden="true" className="relative block h-2.5 w-6">
+                <span
+                  className={cn(
+                    "absolute left-0 h-px w-full bg-current transition-transform duration-500 ease-out-expo",
+                    open ? "top-1/2 rotate-45" : "top-0",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "absolute left-0 h-px w-full bg-current transition-transform duration-500 ease-out-expo",
+                    open ? "top-1/2 -rotate-45" : "bottom-0",
+                  )}
+                />
+              </span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -227,11 +244,16 @@ export function Navbar() {
             ))}
           </ol>
         </nav>
-        <div data-menu-meta className="label space-y-2 border-t border-border pt-6 text-muted">
-          <a href={`mailto:${contact.email}`} className="block text-foreground normal-case tracking-normal text-base">
-            {contact.email}
-          </a>
-          <p>Where telecom data becomes intelligence.</p>
+        <div data-menu-meta className="space-y-6 border-t border-border pt-6">
+          <Button href="#contact" variant="accent" onClick={() => setOpen(false)} className="w-full">
+            Request a demo
+          </Button>
+          <div className="label space-y-2 text-muted">
+            <a href={`mailto:${contact.email}`} className="block text-foreground normal-case tracking-normal text-base">
+              {contact.email}
+            </a>
+            <p>Where telecom data becomes intelligence.</p>
+          </div>
         </div>
       </div>
     </>

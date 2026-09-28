@@ -59,6 +59,18 @@ export const assets = {
       "photo-1591808216268-ce0b82787efe",
       "Network switch with patched cables",
     ),
+    fraud: temp(
+      "photo-1544197150-b99a580bb7a8",
+      "Patch panel with network cables",
+    ),
+    lms: temp(
+      "photo-1558494949-ef010cbdcc31",
+      "Server racks in a data centre",
+    ),
+    lawful: temp(
+      "photo-1604869515882-4d10fa4b0492",
+      "Fibre-optic light trails",
+    ),
   },
   technology: {
     texture: temp(

@@ -1,29 +1,30 @@
 import { gsap } from "@/lib/gsap";
 import { responsiveScene, select, type SceneAnimation } from "./global";
 
-/** Panels open one after another like shutters as the section arrives. */
+/** Each audience's panels open one after another like shutters as they arrive. */
 export const solutionsAnimation: SceneAnimation = (root) =>
   responsiveScene(({ desktop, reduced }) => {
     if (reduced) return;
-    const panels = select(root, '[data-solutions="panel"]');
 
     if (desktop) {
-      gsap.fromTo(
-        panels,
-        { clipPath: "inset(100% 0% 0% 0%)" },
-        {
-          clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.6,
-          stagger: 0.18,
-          ease: "expo.inOut",
-          scrollTrigger: { trigger: select(root, '[data-solutions="stage"]')[0], start: "top 75%", once: true },
-          clearProps: "clipPath",
-        },
-      );
+      select(root, '[data-solutions="stage"]').forEach((stage) => {
+        gsap.fromTo(
+          select(stage, '[data-solutions="panel"]'),
+          { clipPath: "inset(100% 0% 0% 0%)" },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.6,
+            stagger: 0.18,
+            ease: "expo.inOut",
+            scrollTrigger: { trigger: stage, start: "top 78%", once: true },
+            clearProps: "clipPath",
+          },
+        );
+      });
       return;
     }
 
-    panels.forEach((panel) => {
+    select(root, '[data-solutions="panel"]').forEach((panel) => {
       gsap.from(panel, {
         opacity: 0,
         y: 40,

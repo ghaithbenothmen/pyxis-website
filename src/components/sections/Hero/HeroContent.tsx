@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/animation/Magnetic";
-import { countriesReach } from "@/data/countries";
+import { HeroProofs } from "./HeroProofs";
 
 const titleLines = ["Turn your network data", "into revenue, loyalty", "and compliance."];
 
@@ -12,7 +12,7 @@ export function HeroContent() {
     >
       <div aria-hidden="true" />
 
-      <div className="py-16 md:py-20">
+      <div className="py-12 md:py-20">
         <p data-hero="eyebrow" data-intro className="label mb-8 flex items-center gap-3 text-primary">
           <span className="h-px w-8 bg-primary/60" aria-hidden="true" />
           For telecom operators · ORION
@@ -50,18 +50,8 @@ export function HeroContent() {
         </div>
       </div>
 
-      {/* Bottom readouts */}
-      <div className="label flex items-end justify-between gap-6 border-t border-border pt-5 text-subtle">
-        <span data-hero="meta" data-intro className="flex items-center gap-3">
-          <span className="relative block h-8 w-px overflow-hidden bg-border-strong">
-            <span className="absolute inset-x-0 top-0 h-1/2 bg-primary motion-safe:animate-[scan-y_2s_var(--ease-in-out)_infinite]" />
-          </span>
-          Scroll to discover
-        </span>
-        <span data-hero="meta" data-intro className="hidden text-right sm:block">
-          Active in {countriesReach} countries
-        </span>
-      </div>
+      {/* Bottom readout: proof points (spec S03) */}
+      <HeroProofs />
     </div>
   );
 }

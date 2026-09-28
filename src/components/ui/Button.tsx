@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Arrow } from "./Arrow";
 
 type ButtonProps = ComponentPropsWithoutRef<"a"> & {
-  variant?: "primary" | "ghost";
+  variant?: "primary" | "ghost" | "accent";
   arrow?: "right" | "down" | "up-right";
   size?: "md" | "sm";
 };
@@ -14,6 +14,9 @@ const variants = {
     "bg-foreground text-background hover:bg-accent border-transparent",
   ghost:
     "border-border-strong text-foreground hover:border-foreground/60 bg-background/20 backdrop-blur-sm",
+  /** Brand orange with dark text (AA contrast); for the always-visible demo button. */
+  accent:
+    "bg-accent text-background hover:bg-foreground border-transparent",
 } as const;
 
 const sizes = {

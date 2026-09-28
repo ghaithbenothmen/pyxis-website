@@ -1,11 +1,11 @@
-import type { Solution } from "@/data/solutions";
+import type { Audience } from "@/data/solutions";
 import { pipeline } from "@/data/technologies";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { FadeUp } from "@/components/animation/FadeUp";
 import { pad } from "@/lib/utils";
 
-/** The data sources behind the use case and how ORION processes them. */
-export function UseCaseData({ solution, index }: { solution: Solution; index: string }) {
+/** For technical teams: the data sources behind these solutions and how ORION processes them. */
+export function AudienceData({ audience, index }: { audience: Audience; index: string }) {
   return (
     <section aria-labelledby="data-title" className="relative border-t border-border bg-background-raised py-20 md:py-24">
       <div className="container-page">
@@ -21,7 +21,7 @@ export function UseCaseData({ solution, index }: { solution: Solution; index: st
           <FadeUp className="lg:col-span-4">
             <h3 className="label text-subtle">Data sources</h3>
             <ul className="mt-6 flex flex-wrap gap-2">
-              {solution.sources.map((source) => (
+              {audience.sources.map((source) => (
                 <li
                   key={source}
                   className="label border border-border-strong px-3 py-2 text-foreground normal-case tracking-[0.04em]"

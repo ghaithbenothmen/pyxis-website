@@ -10,7 +10,7 @@ import { InvestigationMap } from "./InvestigationMap";
 
 const evidence = ["Subscriber identified", "Timeline rebuilt", "Location confirmed", "Evidence file ready"];
 
-export function Investigation() {
+export function Investigation({ index = "02" }: { index?: string }) {
   return (
     <Scene
       name="investigation"
@@ -22,9 +22,9 @@ export function Investigation() {
         <div className="container-page relative grid gap-12 py-20 lg:grid-cols-12 lg:items-center lg:gap-8 lg:py-24">
           <div className="relative z-10 lg:col-span-4">
             <p className="label flex items-center gap-4 text-muted">
-              <span className="text-accent">03</span>
+              <span className="text-accent">{index}</span>
               <span className="h-px w-10 bg-border-strong" aria-hidden="true" />
-              <span>In depth · Compliance & investigation</span>
+              <span>In depth · Deep Investigation</span>
             </p>
             <h2 id="investigation-title" className="mt-8 text-section">
               Every event

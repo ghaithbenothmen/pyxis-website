@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: site.title,
-    template: `%s — ${site.name}`,
+    template: `%s | ${site.name}`,
   },
   description: site.description,
   applicationName: site.name,
@@ -43,10 +43,13 @@ export const metadata: Metadata = {
     "ORION",
     "customer experience",
     "regulatory compliance",
-    "lawful intercept",
+    "lawful interception",
+    "log management system",
+    "subscriber attribution",
     "CGNAT mapping",
     "fraud detection",
   ],
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: site.name,

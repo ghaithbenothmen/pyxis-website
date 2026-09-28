@@ -25,9 +25,9 @@ src/
 ├── components/
 │   ├── animation/       Scene, FadeUp, Reveal, Parallax, Magnetic, SignalLine, NetworkField (canvas)
 │   ├── layout/          Navbar, Footer, LenisProvider, PageTransition, ScrollRail
-│   ├── sections/        Hero, About, Presence, Orion, AI (ORION Intelligence), Technology, Solutions (Use cases), Investigation, Contact
+│   ├── sections/        Hero, About, Presence, Orion, AI (ORION Intelligence), Technology, Solutions, Investigation, Contact
 │   └── ui/              Button, Container, SectionTitle, Counter, Logo, Arrow
-├── data/                all repeated content (about, metrics, solutions, AI use cases, ORION, investigation, technologies, countries)
+├── data/                all repeated content (about, solutions, regulators, AI use cases, ORION, investigation, technologies, countries)
 ├── hooks/               useGsap, useLenis, useMediaQuery
 └── lib/                 assets (central asset registry), constants (site, nav, contact, motion), gsap (plugin registration), utils
 ```
@@ -38,8 +38,8 @@ interactive pieces (AI ecosystem, solution panels, navbar) and the canvas networ
 ## Content vs. placeholders
 
 - **Real content** — messaging, About (positioning, values and offices), ORION, solutions, AI use cases, data sources,
-  investigation capabilities, metrics (100 TB/h, 6.9% MAPE, 9+ deployments, 8+ use cases),
-  contact details and the technology list from the existing Pyxis IT website.
+  investigation capabilities and contact details. Copy follows the website specification
+  (cahier des charges v1.0): no client names, and "20+ countries" is the only published figure.
 - **Final brand assets** — logo (`public/images/brand/`), favicon and app icons (`src/app/favicon.ico`, `icon.png`, `apple-icon.png`).
 - **Temporary** — every other image, listed in `src/lib/assets.ts` and flagged `temporary: true`.
 - **Illustrative** — timestamps, cell IDs and fingerprints in the investigation map are
@@ -108,10 +108,12 @@ It rewrites `public/images/map/footprint.svg` (transparent dotted map) and
 
 ## Pages
 
-- `/` — home: Hero, About, Where we work, ORION + ORION Intelligence, Data ecosystem, Use cases, Contact
-- `/use-cases/[slug]` — one statically generated page per use case in `src/data/solutions.ts`
-  (header, capabilities, data & ORION pipeline, next use case, contact). The Regulatory
-  Compliance & Deep Investigation page carries the investigation sequence.
+- `/` — home: Hero, About, Where we work, ORION + ORION Intelligence, Data ecosystem, Solutions, Contact
+- `/solutions/[audience]` — one statically generated page per audience in `src/data/solutions.ts`
+  (`service-providers`, `governments-regulators`): header, its three solutions, data & ORION
+  pipeline, link to the other audience, contact. The Governments & Regulators page also carries
+  the deep-investigation sequence. Former `/use-cases/*` and `/solutions/<old-id>` URLs redirect
+  (see `next.config.ts`).
 
 Navbar, footer and structured data live in `src/app/layout.tsx`, so every page shares them.
 Links to home sections use `/#section`; `LenisProvider` scrolls smoothly on the same page

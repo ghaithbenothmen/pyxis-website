@@ -13,14 +13,14 @@ export const aboutStatement =
 export type Principle = {
   title: string;
   detail: string;
-  /** Short tag shown next to the ORION title. */
+  /** Short tag shown at the bottom of the principle card. */
   tag: string;
 };
 
 /** How ORION is built (company description), phrased as client benefits. */
 export const principles: Principle[] = [
   { title: "Works with your existing network", detail: "Vendor-agnostic — no need to replace your equipment.", tag: "Vendor-agnostic" },
-  { title: "Grows with you", detail: "Scalable, from one use case to many.", tag: "Scalable" },
+  { title: "Grows with you", detail: "Scalable, from one solution to many.", tag: "Scalable" },
   { title: "Deploy without replacing anything", detail: "On-premise or in your sovereign cloud.", tag: "On-premise & sovereign" },
   { title: "Proven in the field", detail: "Built for real-world telecom operations.", tag: "Field-proven" },
 ];

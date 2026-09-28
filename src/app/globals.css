@@ -17,7 +17,7 @@
   --surface-strong: #0a2542;
   --foreground: #eef2f6;
   --muted: #8fa0b3;
-  --subtle: #5e6e80;
+  --subtle: #74849a;
   --border: rgb(255 255 255 / 0.08);
   --border-strong: rgb(255 255 255 / 0.16);
 
@@ -103,6 +103,11 @@
   :focus-visible {
     outline: 1px solid var(--primary);
     outline-offset: 4px;
+  }
+
+  /* Sections focused programmatically after an anchor jump: no ring */
+  [tabindex="-1"]:focus-visible {
+    outline: none;
   }
 
   h1,
@@ -200,6 +205,15 @@
   stroke-dasharray: 0.06 0.94;
   animation: flow-dash var(--flow-duration, 4s) linear infinite;
   animation-delay: var(--flow-delay, 0s);
+}
+
+@keyframes scan-x {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
 }
 
 @keyframes scan-y {

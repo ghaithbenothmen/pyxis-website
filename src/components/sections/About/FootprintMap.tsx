@@ -129,18 +129,17 @@ export function FootprintMap() {
       </svg>
 
       {/* Country points with their names */}
-      <ul>
+      <ul aria-label="Countries where Pyxis works">
         {points.map((point) => (
           <li key={point.name} className="absolute" style={pct(point)}>
-            <button
-              type="button"
-              aria-label={point.office ? `${point.name} — ${point.office.role}, ${point.office.city}` : point.name}
+            <span
               className="group/pin absolute top-0 left-0 flex size-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full"
             >
               <span
                 data-footprint="node"
+                aria-hidden="true"
                 className={cn(
-                  "block rounded-full transition-transform duration-300 ease-out-expo group-hover/pin:scale-150 group-focus-visible/pin:scale-150",
+                  "block rounded-full transition-transform duration-300 ease-out-expo group-hover/pin:scale-150",
                   point.office
                     ? "size-2.5 bg-accent ring-2 ring-background"
                     : "size-1.5 bg-primary shadow-[0_0_0_3px_rgb(168_200_234_/_0.15)] md:size-2",
@@ -148,19 +147,19 @@ export function FootprintMap() {
               />
               <span
                 data-footprint="label"
-                aria-hidden="true"
                 className={cn(
                   "pointer-events-none absolute block rounded-[2px] bg-background/85 px-[0.5em] py-[0.4em] text-[clamp(8.5px,0.86cqw,12px)] leading-none tracking-wide whitespace-nowrap backdrop-blur-[2px] transition-colors duration-300",
                   sideClass[sides[point.name] ?? "right"],
                   point.office
                     ? "font-medium text-foreground"
-                    : "text-muted group-hover/pin:text-foreground group-focus-visible/pin:text-foreground",
+                    : "text-muted group-hover/pin:text-foreground",
                 )}
               >
                 {point.name}
                 {point.office ? <span className="text-accent"> · {point.office.city}</span> : null}
+                {point.office ? <span className="sr-only"> ({point.office.role.toLowerCase()})</span> : null}
               </span>
-            </button>
+            </span>
           </li>
         ))}
       </ul>

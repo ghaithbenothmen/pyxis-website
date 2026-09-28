@@ -11,7 +11,9 @@ import { Principles } from "./Principles";
  */
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-title" className="relative pb-20 md:pb-24">
+    <section id="company" aria-labelledby="about-title" className="relative pb-20 md:pb-24">
+      {/* Former anchor, kept so old /#about links still land here (spec S04-R4) */}
+      <span id="about" aria-hidden="true" className="absolute top-0" />
       <div className="container-page">
         <SignalLine className="mx-auto mb-10 md:mb-14 md:ml-0" />
 

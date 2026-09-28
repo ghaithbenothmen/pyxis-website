@@ -1,9 +1,12 @@
 export const site = {
-  name: "Pyxis IT",
-  title: "Pyxis IT — Telecom Data Intelligence",
+  name: "Pyxis",
+  /** Registered company name, used only in the copyright line (spec D7; exact form pending, O5). */
+  legalName: "Pyxis IT",
+  /** Home page title and description (spec §5.2). */
+  title: "Pyxis | Telecom Data Intelligence — ORION Platform",
   tagline: "Where telecom data becomes intelligence.",
   description:
-    "Pyxis IT is a telecom technology company specializing in Telecom Data Intelligence. Its flagship platform, ORION, transforms complex network data into actionable intelligence for telecom operators — network analytics, customer experience, fraud detection, regulatory compliance, AI and revenue intelligence.",
+    "ORION unifies network, subscriber and business data into one correlated intelligence layer for telecom operators and regulators.",
   url: "https://www.pyxisit.net",
 } as const;
 
@@ -13,54 +16,60 @@ export type NavItem = {
   href: string;
 };
 
+export type NavGroup = {
+  label: string;
+  items: NavItem[];
+};
+
+/** Header navigation: simple links, plus the demo button. */
 export const navigation: NavItem[] = [
-  { label: "Company", href: "/#about" },
+  { label: "Company", href: "/#company" },
   { label: "ORION", href: "/#orion" },
-  { label: "Use cases", href: "/#use-cases" },
+  { label: "Solutions", href: "/#solutions" },
   { label: "Contact", href: "#contact" },
 ];
 
-export type FooterColumn = {
-  title: string;
-  links: NavItem[];
-};
-
-export const footerColumns: FooterColumn[] = [
+/** Footer columns (spec S12). */
+export const footerNavigation: NavGroup[] = [
   {
-    title: "Company",
-    links: [
-      { label: "About Pyxis", href: "/#about" },
-      { label: "Where we work", href: "/#presence" },
-      { label: "Contact", href: "#contact" },
-    ],
-  },
-  {
-    title: "Use cases",
-    links: [
-      { label: "Revenue & Network", href: "/use-cases/advanced-analytics" },
-      { label: "Customer Experience", href: "/use-cases/customer-experience" },
-      { label: "Compliance & Investigation", href: "/use-cases/compliance-investigation" },
-    ],
-  },
-  {
-    title: "Platform",
-    links: [
+    label: "Platform",
+    items: [
       { label: "ORION", href: "/#orion" },
       { label: "ORION Intelligence", href: "/#intelligence" },
       { label: "Data ecosystem", href: "/#technology" },
-      { label: "Deep investigation", href: "/use-cases/compliance-investigation#investigation" },
     ],
   },
+  {
+    label: "Solutions",
+    items: [
+      { label: "For Service Providers", href: "/solutions/service-providers" },
+      { label: "For Governments & Regulators", href: "/solutions/governments-regulators" },
+    ],
+  },
+  {
+    label: "Company",
+    items: [
+      { label: "About", href: "/#company" },
+      { label: "Global presence", href: "/#presence" },
+      { label: "Contact", href: "#contact" },
+    ],
+  },
+];
+
+/** Legal pages linked from the footer (spec S12-R4). */
+export const legalLinks: NavItem[] = [
+  { label: "Privacy policy", href: "/privacy" },
+  { label: "Legal notice", href: "/legal" },
 ];
 
 /** Every chapter of the page, in scroll order, for the scroll rail. */
 export const chapters = [
   { id: "top", label: "Intro" },
-  { id: "about", label: "Company" },
+  { id: "company", label: "Company" },
   { id: "presence", label: "Presence" },
   { id: "orion", label: "ORION" },
   { id: "technology", label: "Ecosystem" },
-  { id: "use-cases", label: "Use cases" },
+  { id: "solutions", label: "Solutions" },
   { id: "contact", label: "Contact" },
 ] as const;
 

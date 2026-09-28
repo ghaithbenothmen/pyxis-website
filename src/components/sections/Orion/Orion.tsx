@@ -1,6 +1,5 @@
 import { Scene } from "@/components/animation/Scene";
 import { orionStages } from "@/data/orion";
-import { principles } from "@/data/about";
 import { pad } from "@/lib/utils";
 import { OrionDiagram } from "./OrionDiagram";
 
@@ -37,13 +36,6 @@ export function Orion() {
               Our flagship platform turns the data your network already produces into
               decisions your teams can act on.
             </p>
-            <ul className="label mt-6 flex flex-wrap gap-2 text-foreground">
-              {principles.slice(0, 3).map((principle) => (
-                <li key={principle.tag} className="border border-border-strong px-2.5 py-1.5">
-                  {principle.tag}
-                </li>
-              ))}
-            </ul>
 
             <ol className="mt-8 hidden border-l border-border lg:block">
               {orionStages.map((stage, i) => (
