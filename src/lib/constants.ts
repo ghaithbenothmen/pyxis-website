@@ -12,7 +12,7 @@ export const site = {
 
 export type NavItem = {
   label: string;
-  /** `/#section` for home-page sections, `#contact` for the form on every page, or a route. */
+  /** A page (`/platform`), a section of a page (`/platform#intelligence`) or `#contact`. */
   href: string;
 };
 
@@ -21,16 +21,8 @@ export type NavGroup = {
   items: NavItem[];
 };
 
-/** Header navigation: simple links, plus the demo button. */
-export const navigation: NavItem[] = [
-  { label: "Company", href: "/company" },
-  { label: "ORION", href: "/platform" },
-  { label: "Solutions", href: "/solutions" },
-  { label: "Contact", href: "#contact" },
-];
-
-/** Footer columns (spec S12). */
-export const footerNavigation: NavGroup[] = [
+/** Main navigation (spec S01), shared by the header drop-downs and the footer columns. */
+export const navigation: NavGroup[] = [
   {
     label: "Platform",
     items: [
@@ -42,6 +34,7 @@ export const footerNavigation: NavGroup[] = [
   {
     label: "Solutions",
     items: [
+      { label: "All solutions", href: "/solutions" },
       { label: "For Service Providers", href: "/solutions/service-providers" },
       { label: "For Governments & Regulators", href: "/solutions/governments-regulators" },
     ],

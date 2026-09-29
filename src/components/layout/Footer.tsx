@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { contact, footerNavigation, legalLinks, site, telHref } from "@/lib/constants";
+import { contact, legalLinks, navigation, site, telHref } from "@/lib/constants";
 import { Logo } from "@/components/ui/Logo";
 import { Arrow } from "@/components/ui/Arrow";
 
@@ -18,7 +18,7 @@ export function Footer() {
           <p className="mt-3 max-w-xs text-sm text-muted">{site.tagline}</p>
         </div>
 
-        {footerNavigation.map((group) => (
+        {navigation.map((group) => (
           <nav key={group.label} aria-label={group.label} className="lg:col-span-2">
             <p className="label text-subtle">{group.label}</p>
             <ul className="mt-4 space-y-2 text-sm">
