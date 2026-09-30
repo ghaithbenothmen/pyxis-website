@@ -12,8 +12,7 @@ GSAP 3 + ScrollTrigger (`@gsap/react`) · Lenis · ESLint
 npm install
 npm run dev     # http://localhost:3000
 npm run lint
-npm run build
-npm run start
+npm run build   # static export → /out (see Deployment)
 ```
 
 ## Structure
@@ -117,8 +116,37 @@ It rewrites `public/images/map/footprint.svg` (transparent dotted map) and
   (`service-providers`, `governments-regulators`): header, its three solutions, data & ORION
   pipeline, link to the other audience, contact. The Governments & Regulators page also carries
   the deep-investigation sequence. Former `/use-cases/*` and `/solutions/<old-id>` URLs redirect
-  (see `next.config.ts`).
+  (see `public/.htaccess`).
 
 Navbar, footer and structured data live in `src/app/layout.tsx`, so every page shares them.
 Links to home sections use `/#section`; `LenisProvider` scrolls smoothly on the same page
 and restores the right position after client-side navigation.
+
+## Deployment (OVH web hosting)
+
+The site is a **static export** (`output: "export"` in `next.config.ts`): `npm run build`
+writes plain HTML, CSS, JS and images to `/out`. No Node.js server is needed, so it runs on any
+OVH web hosting plan (Apache).
+
+`public/.htaccess` is copied into `/out` and does what a Next.js server would otherwise do:
+HTTPS and `www` redirect, the former `/use-cases/*` redirects, clean URLs (`/platform` serves
+`platform.html`), the in-site navigation data files (`__next.*.__PAGE__.txt`), the 404 page and
+cache headers. Keep it in sync if routes change.
+
+1. `npm ci && npm run build`
+2. Back up the current content of the hosting's `www/` folder (SFTP, e.g. FileZilla).
+3. Upload the **content** of `/out` into `www/`, including the hidden `.htaccess`
+   (replace the whole `_next/` folder on every update).
+4. OVH Manager → Web hosting → Multisite: add `pyxisit.net`, `www.pyxisit.net`, `pyxis.com.tn`
+   and `www.pyxis.com.tn`, all → `www`, with the SSL option enabled (the Let's Encrypt certificate
+   covers every name). The site is served on **both** domains, each staying on its own domain;
+   `.htaccess` only adds `www` and HTTPS. Canonical tags, sitemap and structured data point to
+   `www.pyxisit.net` (`site.url`), so search engines index one copy. For `pyxis.com.tn`, only
+   change the web records (A/AAAA for the bare name and `www`) at its registrar: leave the MX
+   records untouched so e-mail keeps working.
+5. Check: every page over `https://www.pyxisit.net` and `https://www.pyxis.com.tn`, `/use-cases/customer-experience` redirects, an unknown
+   URL shows the 404 page, `/sitemap.xml` and `/robots.txt` respond. Submit the sitemap in
+   Google Search Console.
+
+`npm run start` does not apply to a static export; to preview `/out` locally, serve the folder
+with any static server that supports clean URLs.

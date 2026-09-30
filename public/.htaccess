@@ -1,0 +1,75 @@
+# Pyxis website — Apache configuration for OVH web hosting.
+# The site is a static export (`npm run build` → /out); this file is copied
+# to the root of /out and must sit at the root of the hosting's www/ folder.
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+# /solutions is both a page (solutions.html) and a folder (solutions/…):
+# don't let Apache add a trailing slash before the rewrites below run.
+DirectorySlash Off
+
+RewriteEngine On
+RewriteBase /
+
+# 1. The site is served on both domains, www.pyxisit.net and www.pyxis.com.tn,
+#    each staying on its own domain. Only the address form is normalised,
+#    within the same domain: the bare name gets "www", and HTTP becomes HTTPS.
+#    (Search engines are pointed to www.pyxisit.net by the canonical tags.)
+RewriteCond %{HTTP_HOST} ^(pyxisit\.net|pyxis\.com\.tn)$ [NC]
+RewriteRule ^ https://www.%1%{REQUEST_URI} [R=301,L]
+#    Force HTTPS (OVH may terminate TLS in front of Apache: check both signals)
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# 2. Former "Use cases" pages (spec D8 / T7)
+RewriteRule ^(use-cases|solutions)/(advanced-analytics|customer-experience)/?$ /solutions/service-providers [R=301,L]
+RewriteRule ^(use-cases|solutions)/compliance-investigation/?$ /solutions/governments-regulators [R=301,L]
+RewriteRule ^use-cases/?$ /solutions [R=301,L]
+
+# 3. In-site navigation data (Next.js static export). The browser asks for
+#    /platform/__next.platform.__PAGE__.txt, the export writes
+#    /platform/__next.platform/__PAGE__.txt: map the dotted name to the folder.
+RewriteRule ^(.*/)?__next\.([^./]+)\.([^./]+)\.([^./]+)\.__PAGE__\.txt$ $1__next.$2/$3/$4/__PAGE__.txt [L]
+RewriteRule ^(.*/)?__next\.([^./]+)\.([^./]+)\.__PAGE__\.txt$ $1__next.$2/$3/__PAGE__.txt [L]
+RewriteRule ^(.*/)?__next\.([^./]+)\.__PAGE__\.txt$ $1__next.$2/__PAGE__.txt [L]
+
+# 4. Clean URLs without a trailing slash: /platform/ → /platform
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# 5. Serve /platform from platform.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# 6. Unknown pages get the site's 404 page
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  # Versioned build files never change: cache them for a year
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  # Pages are always revalidated, so updates show up straight away
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>

@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/constants";
 import { audienceHref, audiences } from "@/data/solutions";
 
+// Generated once at build time (static export)
+export const dynamic = "force-static";
+
 /** Indexable pages only: the legal pages stay out until their text is published. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const url = (path: string) => new URL(path, site.url).toString();

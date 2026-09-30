@@ -20,11 +20,12 @@ export type VideoAsset = {
   poster: ImageAsset;
 };
 
-const unsplash = (id: string, width = 2000) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=75`;
-
+/**
+ * Temporary photography, downloaded from Unsplash (free licence) and served
+ * from /public/images/stock as WebP, so the site has no external dependency.
+ */
 const temp = (id: string, alt: string): ImageAsset => ({
-  src: unsplash(id),
+  src: `/images/stock/${id}.webp`,
   alt,
   temporary: true,
 });
