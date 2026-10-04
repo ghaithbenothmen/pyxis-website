@@ -1,11 +1,11 @@
 /**
  * About Pyxis. Positioning and ORION statements come from the approved company
- * description; offices from the existing Pyxis IT website. Nothing
+ * description; offices from the existing Pyxis website. Nothing
  * here is invented (no founding year, headcount or awards).
  */
 
 export const aboutLead =
-  "Pyxis IT is a telecom technology company specializing in Telecom Data Intelligence.";
+  "Pyxis is a telecom technology company specializing in Telecom Data Intelligence.";
 
 export const aboutStatement =
   "Every operator sits on a huge amount of network data. With ORION, our platform, you put it to work: stop fraud, keep your customers, run a better network and answer regulators with confidence.";

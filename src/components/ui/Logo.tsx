@@ -16,7 +16,7 @@ export function Logo({ tone = "dark", eager = false, className }: LogoProps) {
   return (
     <Image
       src={logo.src}
-      alt="Pyxis IT"
+      alt="Pyxis"
       width={logo.width}
       height={logo.height}
       sizes="160px"

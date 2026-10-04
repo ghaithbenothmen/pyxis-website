@@ -9,7 +9,7 @@ export default function NotFound() {
         <NetworkField density={0.6} />
       </div>
       <div className="container-page flex flex-1 flex-col justify-between py-10">
-        <Link href="/" aria-label="Pyxis IT — home">
+        <Link href="/" aria-label="Pyxis — home">
           <Logo eager />
         </Link>
 
@@ -27,7 +27,7 @@ export default function NotFound() {
           </Link>
         </div>
 
-        <p className="label text-subtle">Pyxis IT — Telecom Data Intelligence</p>
+        <p className="label text-subtle">Pyxis — Telecom Data Intelligence</p>
       </div>
     </main>
   );

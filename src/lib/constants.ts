@@ -1,7 +1,7 @@
 export const site = {
   name: "Pyxis",
   /** Registered company name, used only in the copyright line (spec D7; exact form pending, O5). */
-  legalName: "Pyxis IT",
+  legalName: "Pyxis",
   /** Home page title and description (spec §5.2). */
   title: "Pyxis | Telecom Data Intelligence — ORION Platform",
   tagline: "Where telecom data becomes intelligence.",

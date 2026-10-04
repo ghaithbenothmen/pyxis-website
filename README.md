@@ -1,6 +1,6 @@
-# Pyxis IT — Corporate Website
+# Pyxis — Corporate Website
 
-Landing site for Pyxis IT: telecom data, network intelligence, ORION, AI, customer
+Landing site for Pyxis: telecom data, network intelligence, ORION, AI, customer
 experience, regulatory compliance and deep investigation.
 
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript (strict) · Tailwind CSS 4 ·
